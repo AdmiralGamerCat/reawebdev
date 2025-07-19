@@ -1,0 +1,106 @@
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 100%;
+    max-width: 80%;
+    max-height: 80%;
+    scale: 1;
+    transition:
+        height 0.3s ease,
+        width 0.3s ease,
+        max-width 0.3s ease,
+        top 0.3s ease,
+        left 0.3s ease,
+        transform 0.3s ease,
+        border-radius 0.3s
+    ;
+}
+
+.window.hidden {
+    scale: 0;
+}
+
+.window.fullscreen {
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: 100%;
+    transform: translateX(0) translateY(0);
+    border-radius: 0px;
+    border: none;
+}
+
+.window-title-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px 8px 0px 0px;
+    background-color: var(--window-background-color-2);
+}
+
+.window-tab-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5em 0em 0em 0.5em;
+}
+
+.window-tab {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    padding: 0.5em 1em;
+    background-color: var(--window-background-color);
+    border-radius: 8px 8px 0px 0px;
+}
+
+.window-content-container {
+    background-color: var(--window-background-color);
+    border-radius: 0px 0px 8px 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    font-family: "Fira Code", monospace;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* window buttons */
+.window-btns-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    gap: 0.5em;
+    cursor: default;
+    overflow: auto;
+}
+
+.window-minimize-btn > i {
+    margin-bottom: 0.5em;
+}
+
+.window button {
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.window button > i {
+    color: whitesmoke;
+}
+
+.window button:hover:not(.window-close-btn) {
+    background-color: var(--window-button-background-color);
+}
+
+.window-close-btn:hover {
+    background-color: crimson;
+    /* border-radius: 0px 8px 0px 0px; */
+}

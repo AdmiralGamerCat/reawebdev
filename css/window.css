@@ -1,0 +1,107 @@
+.window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 80%;
+    aspect-ratio: 16/9;
+    transform: translate(-50%, -50%) scale(1);
+    transition:
+        top 0.3s ease,
+        left 0.3s ease,
+        width 0.3s ease,
+        height 0.3s ease,
+        transform 0.3s ease;
+    border: var(--window-border);
+    box-shadow: var(--window-box-shadow);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.window.hidden {
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* Fullscreen state */
+.window.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+    transform: none; 
+    border: none;
+    box-shadow: none;
+}
+
+
+.window-title-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--window-background-color-2);
+}
+
+.window-tab-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5em 0em 0em 0.5em;
+}
+
+.window-tab {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    padding: 0.5em 1em;
+    background-color: var(--window-background-color);
+    border-radius: 8px 8px 0px 0px;
+}
+
+.window-content-container {
+    background-color: var(--window-background-color);
+    border-radius: 0px 0px 8px 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    font-family: "Fira Code", monospace;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* window buttons */
+.window-title-bar button {
+    background-color: transparent;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+    border: none;
+    cursor: pointer;
+}
+
+.window-title-bar button > i {
+    color: whitesmoke;
+}
+
+.window-title-bar button:hover:not(.window-close-btn) {
+    background-color: var(--window-button-background-color);
+}
+
+.window-close-btn:hover {
+    background-color: crimson;
+}
+
+.window-btns-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    gap: 0.5em;
+    cursor: default;
+}
