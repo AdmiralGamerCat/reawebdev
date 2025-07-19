@@ -7,8 +7,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1em;
 }
 
+/* window */
 .window {
     aspect-ratio: 16/9;
     height: 80vh;
@@ -19,12 +21,89 @@
     box-shadow: var(--window-box-shadow);
     display: flex;
     flex-direction: column;
+    color: var(--window-text-color);
+    transform: scale(1);
+    transition: transform 0.3s ease, scale 0.3s ease;
 }
 
+.window.hidden {
+    transform: scale(0);
+    pointer-events: none;
+}
+
+/* window buttons */
+.window button {
+    border: none;
+    background-color: transparent;
+    padding: 0.5em;
+    border-radius: var(--window-border-radius);
+    color: var(--window-text-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.window button:hover {
+    background-color: var(--window-btn-hover-bg-color);
+}
+
+.window button.close-btn:hover {
+    background-color: crimson;
+}
+
+
+.window button:active {
+    background-color: var(--window-btn-active-bg-color);
+}
+
+/* window title bar */
 .window-title-bar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background-color: var(--window-bg-color-1);
     border-radius: var(--window-border-radius) var(--window-border-radius) 0px 0px;
+}
+
+.window-tabs-container {
+    padding: 0.5em 0.5em 0px 0.5em;
+}
+
+.window-tab {
+    padding: 0.5em;
+    border-radius: var(--window-border-radius) var(--window-border-radius) 0px 0px;
+    background-color: var(--window-bg-color-2);
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.window-icon-bg {
+    color: var(--window-bg-color-1);
+}
+
+/* window buttons container */
+.window-btns-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.window-btns-container button {
+    aspect-ratio: 1/1;
+    border-radius: 0px;
+}
+
+.window-btns-container button:nth-last-child(1) {
+    border-radius: 0px var(--window-border-radius) 0px 0px;
+}
+
+/* window content container */
+.window-content-container {
+    flex-grow: 1;
+    background-color: var(--window-bg-color-2);
+    border-radius: 0px 0px var(--window-border-radius) var(--window-border-radius);
+    font-family: var(--code-font);
+    padding: 1em 0.5em 0.5em 0.5em;
 }
