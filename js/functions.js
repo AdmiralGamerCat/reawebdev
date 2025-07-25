@@ -88,17 +88,21 @@ function createElement(tag,  options = {}) {
 }
 
 // window functions
-function fullscreenWindowSwitch(e) {
-    const window = e.target.closest(".window");
-    const fullscreenBtnIcon = e.target.closest(".fullscreen-btn").querySelector(".btn-icon");
+function fullscreenWindowSwitch(eOrElement) {
+    let window;
+
+    if (eOrElement instanceof Event) {
+        window = eOrElement.target.closest(".window");
+    } else {
+        window = eOrElement
+    }
+
+    const fullscreenBtnIcon = window.querySelector(".fullscreen-btn").querySelector(".btn-icon");
 
     if (fullscreenBtnIcon.className.includes("fa-window-maximize")) {
-        console.log("Currently minimized window.");
         window.classList.add("fullscreen");
         fullscreenBtnIcon.classList.replace("fa-window-maximize", "fa-window-restore");
-
     } else {
-        console.log("Currently maximized window.");
         window.classList.remove("fullscreen");
         fullscreenBtnIcon.classList.replace("fa-window-restore", "fa-window-maximize");
     }
@@ -122,7 +126,7 @@ function closeWindow(eOrElement) {
     })
 }
 
-function addWindow(template, title, icon, fullscreen = false, close = false, content = "") {
+function addWindow(template, title, id, icon, fullscreen = false, close = false, content = "") {
     const windowsContainer = document.querySelector("#windows-container");
     const window = createElement(template.tag, template);
 
@@ -130,6 +134,10 @@ function addWindow(template, title, icon, fullscreen = false, close = false, con
 
     if (title) {
         window.querySelector(".window-title").textContent = title;
+    }
+
+    if (id) {
+        window.id = id;
     }
 
     if (icon) {
