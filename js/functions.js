@@ -88,8 +88,32 @@ function createElement(tag,  options = {}) {
 }
 
 // window functions
-function closeWindow(e) {
+function fullscreenWindowSwitch(e) {
     const window = e.target.closest(".window");
+    const fullscreenBtnIcon = e.target.closest(".fullscreen-btn").querySelector(".btn-icon");
+
+    if (fullscreenBtnIcon.className.includes("fa-window-maximize")) {
+        console.log("Currently minimized window.");
+        window.classList.add("fullscreen");
+        fullscreenBtnIcon.classList.replace("fa-window-maximize", "fa-window-restore");
+
+    } else {
+        console.log("Currently maximized window.");
+        window.classList.remove("fullscreen");
+        fullscreenBtnIcon.classList.replace("fa-window-restore", "fa-window-maximize");
+    }
+}
+
+function closeWindow(eOrElement) {
+    let window;
+
+    if (eOrElement instanceof Event) {
+        window = eOrElement.target.closest(".window");
+    } else {
+        window = eOrElement;
+    }
+
+    if (!window) return;
 
     window.classList.add("hidden");
 
@@ -98,10 +122,44 @@ function closeWindow(e) {
     })
 }
 
+function addWindow(template, title, icon, fullscreen = false, close = false, content = "") {
+    const windowsContainer = document.querySelector("#windows-container");
+    const window = createElement(template.tag, template);
+
+    windowsContainer.appendChild(window);
+
+    if (title) {
+        window.querySelector(".window-title").textContent = title;
+    }
+
+    if (icon) {
+        window.querySelector(".window-icon").classList.replace("fa-notdef", icon);
+    }
+
+    if (fullscreen) {
+        window.querySelector(".fullscreen-btn").addEventListener("click", fullscreenWindowSwitch);
+    }
+
+    if (close) {
+        window.querySelectorAll(".close-btn").forEach((btn) => {
+            btn.addEventListener("click", closeWindow);
+        })
+    }
+
+    if (content !== "") {
+        window.querySelector(".window-content-container").appendChild(content);
+    }
+
+    requestAnimationFrame(() => { window.classList.remove("hidden") });
+    return window;
+}
+
 export const functions = {
     delay,
     typewriter,
     addMsgs,
     createElement,
-    closeWindow
+    fullscreenWindowSwitch,
+    closeWindow,
+    addWindow
 }

@@ -6,21 +6,36 @@ const windowsContainer = container.querySelector("#windows-container");
 import { functions } from "./functions.js";
 import { templates } from "./templates.js";
 
-window.addEventListener("load", () => {
-    const window = functions.createElement(templates.window.tag, templates.window);
+async function startAnimation() {
+    const cmdWindow = functions.addWindow(templates.window, "Command Prompt", "fa-terminal", true, true)
 
-    windowsContainer.appendChild(window);
-    const contentContainer = window.querySelector(".window-content-container");
+    const cmdWindowContentContainer = cmdWindow.querySelector(".window-content-container");
 
-    const msgs = [
-        "Test message 1.",
-        "Test message 2...",
-        "Test message 3..",
-        "br",
-        "Test message 4...",
-        "Test message 5."
+    const initialMsgs = [
+        "Hidde Aalders Portfolio [Version 1.0]",
+        "(c) Hidde Aalders. All rights reserved",
+        "br"
     ]
 
-    // functions.addMsgs(contentContainer, msgs, true);
-    functions.addMsgs(contentContainer, msgs, false, 200);
+    functions.addMsgs(cmdWindowContentContainer, initialMsgs);
+
+    const loadingMsgs = [
+        "*Warning: This terminal is not dangerous.*",
+        "Initializing...",
+        "Checking for updates...",
+        "No new updates found.",
+        "Loading projects...",
+        "Succesfully loaded all projects.",
+        "starting portfolio.exe..."
+    ]
+
+    await functions.delay(10);
+
+    await functions.addMsgs(cmdWindowContentContainer, loadingMsgs, true, 200);
+
+    functions.closeWindow(cmdWindow);
+}
+
+window.addEventListener("load", () => {
+    startAnimation();
 })

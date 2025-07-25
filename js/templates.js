@@ -2,7 +2,7 @@ import { functions } from "./functions.js";
 
 const windowTemplate = {
     tag: "div",
-    class: "window",
+    class: "window hidden",
     children: [
         {
             tag: "div",
@@ -32,9 +32,6 @@ const windowTemplate = {
                                 { 
                                     tag: "button",
                                     class: "close-btn",
-                                    events: [
-                                        { type: "click", action: functions.closeWindow }
-                                    ],
                                     children: [
                                         { tag: "i", class: "fa-solid fa-xmark fa-xl btn-icon" }
                                     ]
@@ -56,7 +53,7 @@ const windowTemplate = {
                         },
                         {
                             tag: "button",
-                            class: "window-minimize-maximize-btn",
+                            class: "fullscreen-btn",
                             children: [
                                 { tag: "i", class: "fa-regular fa-window-maximize btn-icon" }
                             ]
@@ -64,9 +61,6 @@ const windowTemplate = {
                         {
                             tag: "button",
                             class: "close-btn",
-                            events: [
-                                { type: "click", action: functions.closeWindow }
-                            ],
                             children: [
                                 { tag: "i", class: "fa-solid fa-xmark fa-xl btn-icon" }
                             ]
