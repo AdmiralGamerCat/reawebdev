@@ -1,4 +1,4 @@
-import { functions } from "./functions.js";
+"use strict";
 
 const windowTemplate = {
     tag: "div",
@@ -6,73 +6,51 @@ const windowTemplate = {
     children: [
         {
             tag: "div",
-            class: "window-title-bar",
+            class: "title-bar",
             children: [
+                { tag: "div", class: "tabs-container" },
                 {
                     tag: "div",
-                    class: "window-tabs-container",
-                    children: [
-                        {
-                            tag: "div",
-                            class: "window-tab",
-                            children: [
-                                {
-                                    tag: "span",
-                                    class: "fa-stack",
-                                    children: [
-                                        { tag: "i", class: "fas fa-square fa-stack-2x window-icon-bg" },
-                                        { tag: "i", class: "fas fa-notdef fa-stack-1x fa-inverse window-icon" }
-                                    ]
-                                },
-                                { 
-                                    tag: "p",
-                                    text: "Default Title",
-                                    class: "window-title"
-                                },
-                                { 
-                                    tag: "button",
-                                    class: "close-btn",
-                                    children: [
-                                        { tag: "i", class: "fa-solid fa-xmark fa-xl btn-icon" }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    tag: "div",
-                    class: "window-btns-container",
+                    class: "btns-container",
                     children: [
                         {
                             tag: "button",
-                            class: "window-minimize-btn",
-                            children: [
-                                { tag: "i", class: "fa-solid fa-window-minimize btn-icon" }
-                            ]
+                            class: "minimize-btn",
+                            children: [ { tag: "i", class: "btn-icon fa-solid fa-window-minimize" } ]
                         },
                         {
                             tag: "button",
-                            class: "fullscreen-btn",
-                            children: [
-                                { tag: "i", class: "fa-regular fa-window-maximize btn-icon" }
-                            ]
+                            class: "max-restore-btn",
+                            children: [ { tag: "i", class: "btn-icon fa-regular fa-window-maximize" } ]
                         },
                         {
                             tag: "button",
                             class: "close-btn",
-                            children: [
-                                { tag: "i", class: "fa-solid fa-xmark fa-xl btn-icon" }
-                            ]
+                            children: [ { tag: "i", class: "btn-icon fa-solid fa-xmark fa-xl" } ]
                         }
                     ]
                 }
             ]
         },
-        { tag: "div", class: "window-content-container" }
+        { tag: "div", class: "content-container" }
+    ]
+}
+
+const windowTabTemplate = {
+    tag: "div",
+    class: "window-tab hidden",
+    children: [
+        { tag: "i", class: "tab-icon fa-solid fa-undef" },
+        { tag: "p", class: "tab-title", text: "Default Title" },
+        {
+            tag: "button",
+            class: "close-btn",
+            children: [ { tag: "i", class: "btn-icon fa-solid fa-xmark" } ]
+        }
     ]
 }
 
 export const templates = {
-    window: windowTemplate
+    window: windowTemplate,
+    windowTab: windowTabTemplate
 }

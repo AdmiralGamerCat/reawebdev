@@ -1,18 +1,24 @@
-#windows-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    transition: padding 0.3s ease;
-}
+:root {
+    /* border */
+    --window-border: 1px solid #403F47;
+    --window-border-radius: 8px;
 
-#windows-container:has(.window.fullscreen) {
-    padding: 0px;
+    /* box shadows */
+    --window-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+
+    /* background colors */
+    --window-bg-color-1: #2e2e2e;
+    --window-bg-color-2: #0c0c0c;
+    --window-bg-color-3: #3b3b3b;
+
+    /* buttons */
+    --window-btn-hover-bg-color: #3e3e3e;
+    --window-btn-active-bg-color: #363636;
+    --window-close-btn-hover-bg-color: #E81123;
+    --window-close-btn-active-bg-color: #F1707A;
+
+    /* fonts */
+    --code-font: "Fira Code", monospace;
 }
 
 /* window */
@@ -32,11 +38,9 @@
 }
 
 .window.hidden {
-    transform: scale(0);
-    pointer-events: none;
+    scale: 0;
 }
 
-/* fullscreen */
 .window.fullscreen {
     position: fixed;
     top: 0;
@@ -46,31 +50,30 @@
     aspect-ratio: unset;
     border: none;
     box-shadow: none;
-    z-index: 100;
+    z-index: 999;
 }
 
-.window.fullscreen .window-title-bar,
-.window.fullscreen .window-content-container {
-    border-radius: 0px;
-}
-
-.window.fullscreen .window-btns-container button:nth-last-child(1) {
-    border-radius: 0px;
-}
-
-/* window title bar */
-.window-title-bar {
+/* title bar */
+.window > .title-bar {
     display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
     background-color: var(--window-bg-color-1);
     border-radius: var(--window-border-radius) var(--window-border-radius) 0px 0px;
     transition: border-radius 0.3s ease;
 }
 
-.window-tabs-container {
+.window.fullscreen > .title-bar {
+    border-radius: 0px;
+}
+
+/* tabs container */
+.window > .title-bar > .tabs-container {
     padding: 0.5em 0.5em 0px 0.5em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
 }
 
 .window-tab {
@@ -81,10 +84,23 @@
     flex-direction: row;
     gap: 0.5em;
     align-items: center;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: scale 0.3s ease;
 }
 
-.window-icon-bg {
-    color: var(--window-bg-color-1);
+.window-tab.hidden {
+    scale: 0;
+}
+
+.window-tab.current {
+    background-color: var(--window-bg-color-3);
+}
+
+.tab-icon {
+    background-color: var(--window-bg-color-1);
+    padding: 0.25em;
+    border-radius: 4px;
 }
 
 /* window buttons */
@@ -95,43 +111,72 @@
     border-radius: var(--window-border-radius);
     color: var(--window-text-color);
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    /* aspect-ratio: 1/1; */
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
 }
 
-.window button:hover {
-    background-color: var(--window-btn-hover-bg-color);
-}
+.window button:hover { background-color: var(--window-btn-hover-bg-color) }
 
-.window button.close-btn:hover {
-    background-color: crimson;
-}
+.window button:active { background-color: var(--window-btn-active-bg-color) }
 
-.window button:active {
-    background-color: var(--window-btn-active-bg-color);
-}
+.window button.close-btn:hover { background-color: var(--window-close-btn-hover-bg-color) }
+
+.window button.close-btn:active { background-color: var(--window-close-btn-active-bg-color) }
 
 /* window buttons container */
-.window-btns-container {
+.window .btns-container {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-.window-btns-container button {
+.window .btns-container button {
     aspect-ratio: 1/1;
     border-radius: 0px;
 }
 
-.window-btns-container button:nth-last-child(1) {
+.window .btns-container button:nth-last-child(1) {
     border-radius: 0px var(--window-border-radius) 0px 0px;
 }
 
+.window.fullscreen .btns-container button:nth-last-child(1) {
+    border-radius: 0px;
+}
+
 /* window content container */
-.window-content-container {
+.window .content-container {
     flex-grow: 1;
     background-color: var(--window-bg-color-2);
     border-radius: 0px 0px var(--window-border-radius) var(--window-border-radius);
     font-family: var(--code-font);
     padding: 1em 0.5em 0.5em 0.5em;
-    transition: border-radius 0.3s ease;
+    position: relative;
+    overflow: auto;
+}
+
+.tab-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 0;
+}
+
+.tab-content.current {
+    display: flex;
+    z-index: 999;
+}
+
+#firstTabTabContent {
+    background-color: red;
+}
+
+#secondTabTabContent {
+    background-color: green;
+}
+
+#thirdTabTabContent {
+    background-color: blue;
 }
