@@ -50,7 +50,60 @@ const windowTabTemplate = {
     ]
 }
 
+const popupTemplate = {
+    tag: "div",
+    class: "popup hidden",
+    children: [
+        {
+            tag: "div",
+            class: "title-bar",
+            children: [
+                {
+                    tag: "div",
+                    class: "wrapper",
+                    children: [
+                        { tag: "i", class: "popup-icon fa-solid fa-notdef" },
+                        { tag: "p", class: "popup-title", text: "Default Title" }
+                    ]
+                },
+                {
+                    tag: "div",
+                    class: "btns-container",
+                    children: [
+                        {
+                            tag: "button",
+                            class: "close-btn",
+                            children: [ { tag: "i", class: "btn-icon fa-solid fa-xmark" } ]
+                        }
+                    ]
+                }
+            ]
+        },
+        { tag: "div", class: "content-container" }
+    ]
+}
+
+const popupErrorContentTemplate = {
+    tag: "div",
+    class: "error-content-container",
+    children: [
+        { tag: "i", class: "fa-solid fa-warning fa-2xl" },
+        {
+            tag: "p",
+            class: "error-msg",
+            text: "An unexpected error occurred."
+        },
+        {
+            tag: "button",
+            class: "confirm-btn",
+            children: [ { tag: "p", class: "btn-text", text: "OK" } ]
+        }
+    ]
+}
+
 export const templates = {
     window: windowTemplate,
-    windowTab: windowTabTemplate
+    windowTab: windowTabTemplate,
+    popup: popupTemplate,
+    popupErrorContent: popupErrorContentTemplate
 }

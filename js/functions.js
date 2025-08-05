@@ -79,7 +79,6 @@ async function addMsgs(msgs, element, typewriterEffect = false, msgDelay = 100, 
     }
 }
 
-// window functions
 function closeWindow(eventOrElement) {
     let window;
 
@@ -118,7 +117,7 @@ function fullscreenWindowSwitch(eventOrElement) {
     }
 }
 
-function addWindow(template, parent, close = false, fullscreen) {
+function addWindow(template, parent, close = false, fullscreen = false) {
     const window = createElement(template.tag, template);
     parent.appendChild(window);
 
@@ -134,16 +133,31 @@ function addWindow(template, parent, close = false, fullscreen) {
         window.querySelector(".max-restore-btn").addEventListener("click", fullscreenWindowSwitch);
     }
 
-    // END
     requestAnimationFrame(() => { window.classList.remove("hidden") });
     return window;
+}
+
+function updateCurrentTab(window, currentTab) {
+    const allTabs = window.querySelectorAll(".window-tab");
+    const allTabContents = window.querySelectorAll(".tab-content");
+    const currentTabContent = window.querySelector(`#${currentTab.id}TabContent`);
+
+    allTabs.forEach((tab) => {
+        tab.classList.remove("current");
+    })
+
+    allTabContents.forEach((tabContent) => {
+        tabContent.classList.remove("current");
+    })
+
+    currentTab.classList.add("current");
+    currentTabContent.classList.add("current");
 }
 
 function addWindowTab(window, template, id, title, icon) {
     const tabsContainer = window.querySelector(".tabs-container");
     const contentContainer = window.querySelector(".content-container");
 
-    // tab
     const tab = createElement(template.tag, template);
     const tabTitle = tab.querySelector(".tab-title");
     const tabIcon = tab.querySelector(".tab-icon");
@@ -155,39 +169,34 @@ function addWindowTab(window, template, id, title, icon) {
     tabsContainer.appendChild(tab);
     requestAnimationFrame(() => { tab.classList.remove("hidden") });
 
-    // tab content
     const tabContent = document.createElement("div");
     tabContent.className = "tab-content";
     tabContent.id = `${id}TabContent`;
 
     contentContainer.appendChild(tabContent)
 
-    function updateCurrentTab(currentTab) {
-        const allTabs = tabsContainer.querySelectorAll(".window-tab");
-        const allTabContents = contentContainer.querySelectorAll(".tab-content");
+    updateCurrentTab(window, tab);
 
-        // hide all tabs / tab content's
-        allTabs.forEach((tab) => {
-            if (tab.classList.contains("current")) {
-                tab.classList.remove("current");
-            }
-        })
+    tab.addEventListener("click", () => { updateCurrentTab(window, tab) });
+}
 
-        allTabContents.forEach((tabContent) => {
-            if (tabContent.classList.contains("current")) {
-                tabContent.classList.remove("current");
-            }
-        })
+function addPopup(parent, template, id, icon, title, content, errorMsg = "") {
+    const popup = createElement(template.tag, template);
+    popup.querySelector(".content-container").appendChild(content);
+    popup.querySelector(".popup-icon").className = `popup-icon ${icon}`;
+    popup.querySelector(".popup-title").textContent = title;
+    popup.id = id;
 
-        // show current tab / tab content
-        currentTab.classList.add("current");
-
-        contentContainer.querySelector(`#${currentTab.id}TabContent`).classList.add("current");
+    if (errorMsg !== "") {
+        popup.querySelector(".error-msg").textContent = errorMsg;
     }
 
-    updateCurrentTab(tab);
+    parent.appendChild(popup);
+    requestAnimationFrame(() => {
+        popup.classList.remove("hidden");
+    })
 
-    tab.addEventListener("click", () => { updateCurrentTab(tab) });
+    return popup;
 }
 
 export const functions = {
@@ -197,5 +206,8 @@ export const functions = {
     addMsgs,
     addWindow,
     addWindowTab,
-    closeWindow
+    closeWindow,
+    fullscreenWindowSwitch,
+    updateCurrentTab,
+    addPopup
 }

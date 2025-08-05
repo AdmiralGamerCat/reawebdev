@@ -50,7 +50,7 @@
     aspect-ratio: unset;
     border: none;
     box-shadow: none;
-    z-index: 999;
+    z-index: 100;
 }
 
 /* title bar */
@@ -103,39 +103,47 @@
     border-radius: 4px;
 }
 
-/* window buttons */
-.window button {
+/* window / popup buttons */
+.window button,
+.popup button {
     border: none;
     background-color: transparent;
     padding: 0.5em;
     border-radius: var(--window-border-radius);
     color: var(--window-text-color);
     cursor: pointer;
-    /* aspect-ratio: 1/1; */
+    aspect-ratio: 1/1;
     transition: background-color 0.3s ease, border-radius 0.3s ease;
 }
 
-.window button:hover { background-color: var(--window-btn-hover-bg-color) }
+.window button:hover,
+.popup button:hover { background-color: var(--window-btn-hover-bg-color) }
 
-.window button:active { background-color: var(--window-btn-active-bg-color) }
+.window button:active,
+.popup button:active { background-color: var(--window-btn-active-bg-color) }
 
-.window button.close-btn:hover { background-color: var(--window-close-btn-hover-bg-color) }
+.window button.close-btn:hover
+.popup button.close-btn:hover { background-color: var(--window-close-btn-hover-bg-color) }
 
-.window button.close-btn:active { background-color: var(--window-close-btn-active-bg-color) }
+.window button.close-btn:active,
+.popup button.close-btn:active { background-color: var(--window-close-btn-active-bg-color) }
 
 /* window buttons container */
-.window .btns-container {
+.window .btns-container,
+.popup .btns-container {
     display: flex;
     flex-direction: row;
     height: 100%;
 }
 
-.window .btns-container button {
+.window .btns-container button,
+.popup .btns-container button {
     aspect-ratio: 1/1;
     border-radius: 0px;
 }
 
-.window .btns-container button:nth-last-child(1) {
+.window .btns-container button:nth-last-child(1),
+.popup .btns-container button:nth-last-child(1) {
     border-radius: 0px var(--window-border-radius) 0px 0px;
 }
 
@@ -149,12 +157,11 @@
     background-color: var(--window-bg-color-2);
     border-radius: 0px 0px var(--window-border-radius) var(--window-border-radius);
     font-family: var(--code-font);
-    padding: 1em 0.5em 0.5em 0.5em;
     position: relative;
     overflow: auto;
 }
 
-.tab-content {
+.window .tab-content {
     position: absolute;
     top: 0;
     left: 0;
@@ -164,19 +171,96 @@
     z-index: 0;
 }
 
-.tab-content.current {
+.window .tab-content.current {
     display: flex;
-    z-index: 999;
+    flex-direction: column;
+    z-index: 100;
 }
 
-#firstTabTabContent {
-    background-color: red;
+#startupTabContent {
+    flex-direction: column;
+    padding: 0.5em;
 }
 
-#secondTabTabContent {
-    background-color: green;
+/* popup */
+.popup {
+    border-radius: var(--window-border-radius);
+    aspect-ratio: 1.33/1;
+    box-shadow: var(--window-box-shadow);
+    display: flex;
+    flex-direction: column;
+    color: var(--window-text-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 200;
+    transition: scale 0.3s ease;
 }
 
-#thirdTabTabContent {
-    background-color: blue;
+.popup.hidden {
+    scale: 0;
+}
+
+.popup .title-bar {
+    background-color: var(--window-bg-color-1);
+    border-radius: var(--window-border-radius) var(--window-border-radius) 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup .wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.popup .content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    background-color: var(--window-bg-color-2);
+    flex: 1;
+    position: relative;
+    border-radius: 0px 0px var(--window-border-radius) var(--window-border-radius);
+}
+
+.popup button.confirm-btn {
+    background-color: var(--btn-bg-color);
+    border: var(--btn-border);
+    position: absolute;
+    right: 1em;
+    bottom: 1em;
+    padding: 0.5em 2em;
+    aspect-ratio: unset;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.popup button.confirm-btn:hover {
+    background-color: var(--btn-bg-color-hover);
+    border: var(--btn-border-hover);
+}
+
+.popup button.confirm-btn:active {
+    background-color: var(--btn-bg-color-active);
+    border: var(--btn-border-active);
+}
+
+/* popup error content */
+.popup .error-content-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    flex: 1;
+}
+
+.popup .error-content-container i {
+    font-size: clamp(2em, 10vw, 10em);
+    width: fit-content;
+    margin: auto;
+    color: var(--window-close-btn-active-bg-color);
 }

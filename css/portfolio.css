@@ -1,0 +1,53 @@
+:root {
+    /* background colors */
+    --bg-color-1: #202020;
+    --surface-bg-color: #2b2b2b;
+    --surface-bg-color-hover: #323232;
+
+    /* button background colors */
+    --btn-bg-color: #373737;
+    --btn-bg-color-hover: #434343;
+    --btn-bg-color-active: #383838;
+
+    /* borders */
+    --border: 1px solid #1d1d1d;
+    
+    /* button borders */
+    --btn-border: 2px solid #3f3f3f;
+    --btn-border-hover: 2px solid #454545;
+    --btn-border-active: 2px solid #404040;
+
+    /* text */
+    --link-text-color: #9CEBFF;
+}
+
+#portfolioTabContent {
+    background-color: var(--bg-color-1);
+}
+
+/* buttons */
+button {
+    background-color: var(--btn-bg-color);
+    border: var(--btn-border);
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--btn-bg-color-hover);
+    border: var(--btn-border-hover);
+}
+
+button:active {
+    background-color: var(--btn-bg-color-active);
+    border: var(--btn-border-active);
+}
+
+button.close-btn:hover {
+    background-color: var(--window-close-btn-hover-bg-color);
+    border: none;
+}
+
+button.close-btn:active {
+    background-color: var(--window-close-btn-active-bg-color);
+    border: none;
+}
