@@ -1,13 +1,22 @@
 "use strict";
 
-function createElement(tag, options = {}) {
+function createElement(tagOrArray, options = {}) {
+    let tag;
+
+    if (Array.isArray(tagOrArray)) {
+        return tagOrArray.map((array) => createElement(array.tag, array));
+    } else {
+        tag = tagOrArray;
+    }
+
     const element = document.createElement(tag);
 
     if (options.id) { element.id = options.id };
-
     if (options.class) { element.className = options.class };
-
     if (options.text) { element.textContent = options.text };
+    if (options.src) { element.setAttribute("src", options.src) };
+    if (options.href) { element.setAttribute("href", options.href) };
+    if (options.target) { element.setAttribute("target", options.target) };
 
     if (Array.isArray(options.children) && options.children.length > 0) {
         let childElement;

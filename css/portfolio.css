@@ -11,6 +11,8 @@
 
     /* borders */
     --border: 1px solid #1d1d1d;
+
+    --border-radius: 8px;
     
     /* button borders */
     --btn-border: 2px solid #3f3f3f;
@@ -23,12 +25,89 @@
 
 #portfolioTabContent {
     background-color: var(--bg-color-1);
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+    font-family: var(--default-font);
+}
+
+/* side bar */
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 0px 1em 0px 0px;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.side-bar .nav-item {
+    list-style-type: none;
+    width: 100%;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-bg-color);
+}
+
+.side-bar .nav-item button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+    padding: 1em;
+    aspect-ratio: unset;
+    cursor: pointer;
+    border: var(--btn-border);
+}
+
+.profile {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.profile > img {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: 5em;
+}
+
+.profile .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* main content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.content-title {
+    align-self: flex-start;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* buttons */
 button {
     background-color: var(--btn-bg-color);
     border: var(--btn-border);
+    letter-spacing: 1px;
+    aspect-ratio: unset;
     transition: background-color 0.3s ease, border 0.3s ease;
 }
 
@@ -42,6 +121,7 @@ button:active {
     border: var(--btn-border-active);
 }
 
+/* fix for close button specificity */
 button.close-btn:hover {
     background-color: var(--window-close-btn-hover-bg-color);
     border: none;
@@ -50,4 +130,21 @@ button.close-btn:hover {
 button.close-btn:active {
     background-color: var(--window-close-btn-active-bg-color);
     border: none;
+}
+
+/* links */
+a {
+    color: var(--link-text-color);
+    text-decoration: none;
+}
+
+a[href^="http"]::after { /* external link */
+    content: "\f14c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-left: 0.25em;
+}
+
+a:hover {
+    text-decoration: underline;
 }

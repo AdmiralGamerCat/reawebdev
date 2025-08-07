@@ -5,26 +5,33 @@ import { templates } from "./templates.js";
 import { functions } from "./functions.js";
 
 async function portfolio() {
-    await functions.delay(350);
     const portfolioWindow = functions.addWindow(templates.window, container, false, true);
-
-    portfolioWindow.querySelector(".close-btn").addEventListener("click", () => {
-        functions.closeWindow(portfolioWindow);
-        const popupContent = functions.createElement(templates.popupErrorContent.tag, templates.popupErrorContent);
-        const errorPopup = functions.addPopup(container, templates.popup, "portfolioClosePopup", "fa-solid fa-warning", "Error Handler", popupContent, "An unexpected error occurred while closing `portfolio.exe`.");
-
-        errorPopup.querySelector(".confirm-btn").addEventListener("click", () => {
-            errorPopup.classList.add("hidden");
-
-            errorPopup.addEventListener("transitionend", () => {
-                errorPopup.remove();
-            })
-
-            portfolio();
-        });
-    })
-
     functions.addWindowTab(portfolioWindow, templates.windowTab, "portfolio", "Portfolio.exe", "fa-solid fa-briefcase");
+    const portfolioTabContent = portfolioWindow.querySelector("#portfolioTabContent");
+    const portfolioHomeElements = functions.createElement(templates.portfolioHome);
+    portfolioHomeElements.forEach(element => portfolioTabContent.appendChild(element));
+
+    // set information
+
+    // error 'handling'
+    const allCloseBtns = portfolioWindow.querySelectorAll(".close-btn");
+    allCloseBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            functions.closeWindow(portfolioWindow);
+
+            const ErrorContent = functions.createElement(templates.popupErrorContent.tag, templates.popupErrorContent);
+            const errorPopup = functions.addPopup(container, templates.popup, "portfolioErrorPopup", "fa-solid fa-warning", "Error Handler", ErrorContent, "An unexpected error has occurred while trying to closing `portfolio.exe`.");
+
+            errorPopup.querySelector(".confirm-btn").addEventListener("click", () => {
+                errorPopup.classList.add("hidden");
+
+                setTimeout(() => {
+                    errorPopup.remove();
+                    portfolio();
+                }, 300); // same delay as transition delay
+            })
+        })
+    })
     
     requestAnimationFrame(() => { // one for appearing, one for fullscreen
         requestAnimationFrame(() => {
@@ -44,7 +51,9 @@ async function startAnimation() {
         closeBtn.addEventListener("click", () => {
             startupSkipped = true;
             functions.closeWindow(startWindow);
-            portfolio();
+            setTimeout(() => {
+                portfolio();
+            }, 300); // same delay as transition delay
         })
     })
 
@@ -73,6 +82,7 @@ async function startAnimation() {
     
     if (!startupSkipped) {
         functions.closeWindow(startWindow);
+        await functions.delay(300); // same delay as transition delay
         portfolio();
     }
 }
