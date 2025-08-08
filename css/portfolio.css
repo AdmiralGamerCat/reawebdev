@@ -152,6 +152,7 @@
     align-items: center;
     gap: 1em;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 0.5em;
     scroll-behavior: smooth;
     transition: all 0.3s ease;

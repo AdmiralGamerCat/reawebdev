@@ -185,6 +185,7 @@
     aspect-ratio: 1.33/1;
     height: 80vh;
     width: auto;
+    max-width: 100%;
     box-shadow: var(--window-box-shadow);
     display: flex;
     flex-direction: column;
