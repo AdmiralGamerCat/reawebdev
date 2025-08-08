@@ -16,9 +16,10 @@
     --default-font: "Poppins", sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+html, body {
     font-family: var(--default-font);
+    height: 100%;
+    overflow: hidden;
 }
 
 #container {

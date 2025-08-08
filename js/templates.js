@@ -104,7 +104,7 @@ const popupErrorContentTemplate = {
 const portfolioHomeTemplate = [
     {
         tag: "div",
-        class: "side-bar",
+        class: "sidebar",
         children: [
             {
                 tag: "div",
@@ -116,7 +116,7 @@ const portfolioHomeTemplate = [
                         class: "wrapper",
                         children: [
                             { tag: "h3", class: "profile-name", text: "Hidde Aalders" },
-                            { tag: "a", clsss: "github", text: "GitHub", href: "https://github.com/AdmiralGamerCat", target: "_blank" },
+                            { tag: "a", class: "github", text: "GitHub", href: "https://github.com/AdmiralGamerCat", target: "_blank" },
                             { tag: "a", class: "linked-in", text: "Linked In", href: "https://www.linkedin.com/in/hidde-aalders-080948366/", target: "_blank" }
                         ]
                     }
@@ -132,12 +132,12 @@ const portfolioHomeTemplate = [
                         class: "nav-item",
                         children: [
                             {
-                                tag: "button",
-                                class: "nav-btn",
+                                tag: "a",
+                                class: "btn",
                                 href: "#home",
                                 children: [
-                                    { tag: "i", class: "btn-icon fa-solid fa-house" },
-                                    { tag: "p", class: "btn-text", text: "Home" }
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-house" },
+                                    { tag: "p", class: "nav-item-text", text: "Home" }
                                 ]
                             }
                         ]
@@ -147,12 +147,12 @@ const portfolioHomeTemplate = [
                         class: "nav-item",
                         children: [
                             {
-                                tag: "button",
-                                class: "nav-btn",
-                                href: "#profile",
+                                tag: "a",
+                                class: "btn",
+                                href: "#about",
                                 children: [
-                                    { tag: "i", class: "btn-icon fa-solid fa-user" },
-                                    { tag: "p", class: "btn-text", text: "Profile" }
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-user" },
+                                    { tag: "p", class: "nav-item-text", text: "About" }
                                 ]
                             }
                         ]
@@ -162,12 +162,12 @@ const portfolioHomeTemplate = [
                         class: "nav-item",
                         children: [
                             {
-                                tag: "button",
-                                class: "nav-btn",
+                                tag: "a",
+                                class: "btn",
                                 href: "#projects",
                                 children: [
-                                    { tag: "i", class: "btn-icon fa-solid fa-folder" },
-                                    { tag: "p", class: "btn-text", text: "Projects" }
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-folder" },
+                                    { tag: "p", class: "nav-item-text", text: "Projects" }
                                 ]
                             }
                         ]
@@ -177,12 +177,12 @@ const portfolioHomeTemplate = [
                         class: "nav-item",
                         children: [
                             {
-                                tag: "button",
-                                class: "nav-btn",
+                                tag: "a",
+                                class: "btn",
                                 href: "#contact",
                                 children: [
-                                    { tag: "i", class: "btn-icon fa-solid fa-envelope" },
-                                    { tag: "p", class: "btn-text", text: "Contact" }
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-envelope" },
+                                    { tag: "p", class: "nav-item-text", text: "Contact" }
                                 ]
                             }
                         ]
@@ -192,16 +192,25 @@ const portfolioHomeTemplate = [
                         class: "nav-item",
                         children: [
                             {
-                                tag: "button",
-                                class: "nav-btn",
+                                tag: "a",
+                                class: "btn",
                                 href: "#downloads",
                                 children: [
-                                    { tag: "i", class: "btn-icon fa-solid fa-download" },
-                                    { tag: "p", class: "btn-text", text: "Downloads" }
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-download" },
+                                    { tag: "p", class: "nav-item-text", text: "Downloads" }
                                 ]
                             }
                         ]
                     }
+                ]
+            },
+            { tag: "input", type: "checkbox", id: "sidebar-checkbox" },
+            {
+                tag: "label",
+                for: "sidebar-checkbox",
+                id: "sidebar-checkbox-label",
+                children: [
+                    { tag: "i", class: "fa-solid fa-arrow-left" }
                 ]
             }
         ]
@@ -215,7 +224,39 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "home",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Home"}
+                    { tag: "h1", class: "content-title", text: "Home"},
+                ]
+            },
+            {
+                tag: "div",
+                class: "content-section",
+                id: "About",
+                children: [
+                    { tag: "h1", class: "content-title", text: "About" }
+                ]
+            },
+            {
+                tag: "div",
+                class: "content-section",
+                id: "projects",
+                children: [
+                    { tag: "h1", class: "content-title", text: "Projects" }
+                ]
+            },
+            {
+                tag: "div",
+                class: "content-section",
+                id: "contact",
+                children: [
+                    { tag: "h1", class: "content-title", text: "Contact" }
+                ]
+            },
+            {
+                tag: "div",
+                class: "content-section",
+                id: "downloads",
+                children: [
+                    { tag: "h1", class: "content-title", text: "Downloads" }
                 ]
             }
         ]

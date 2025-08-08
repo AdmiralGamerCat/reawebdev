@@ -183,6 +183,8 @@
 .popup {
     border-radius: var(--window-border-radius);
     aspect-ratio: 1.33/1;
+    height: 80vh;
+    width: auto;
     box-shadow: var(--window-box-shadow);
     display: flex;
     flex-direction: column;

@@ -88,3 +88,23 @@ async function startAnimation() {
 }
 
 window.addEventListener("load", startAnimation);
+
+// asks for confirmation before linking to external website
+document.addEventListener("click", (e) => {
+    const link = e.target.closest("a[href^='http']");
+
+    if (!link) return;
+
+    const currentHost = window.location.host;
+    const linkHost = new URL(link.href).host;
+
+    if (linkHost !== currentHost) {
+        e.preventDefault();
+
+        const confirmed = confirm(`You are about to leave this website and go to:\n${link.href}\n\nContinue?`);
+
+        if (confirmed) {
+            window.open(link.href, "_blank");
+        }
+    }
+})

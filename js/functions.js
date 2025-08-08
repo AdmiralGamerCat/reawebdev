@@ -17,6 +17,8 @@ function createElement(tagOrArray, options = {}) {
     if (options.src) { element.setAttribute("src", options.src) };
     if (options.href) { element.setAttribute("href", options.href) };
     if (options.target) { element.setAttribute("target", options.target) };
+    if (options.type) { element.setAttribute("type", options.type) };
+    if (options.for) { element.setAttribute("for", options.for) };
 
     if (Array.isArray(options.children) && options.children.length > 0) {
         let childElement;
