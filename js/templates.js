@@ -60,7 +60,7 @@ const popupTemplate = {
             children: [
                 {
                     tag: "div",
-                    class: "wrapper",
+                    class: "wrapper row test",
                     children: [
                         { tag: "i", class: "popup-icon fa-solid fa-notdef" },
                         { tag: "p", class: "popup-title", text: "Default Title" }
@@ -110,10 +110,10 @@ const portfolioHomeTemplate = [
                 tag: "div",
                 class: "profile",
                 children: [
-                    { tag: "img", class: "pofile-img", src: "images/guus.png" },
+                    { tag: "img", class: "pofile-img", src: "images/profile-img.jpg" },
                     {
                         tag: "div",
-                        class: "wrapper",
+                        class: "wrapper col",
                         children: [
                             { tag: "h3", class: "profile-name", text: "Hidde Aalders" },
                             { tag: "a", class: "github", text: "GitHub", href: "https://github.com/AdmiralGamerCat", target: "_blank" },
@@ -181,7 +181,7 @@ const portfolioHomeTemplate = [
                                 class: "btn",
                                 href: "#contact",
                                 children: [
-                                    { tag: "i", class: "nav-item-icon fa-solid fa-envelope" },
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-comments" },
                                     { tag: "p", class: "nav-item-text", text: "Contact" }
                                 ]
                             }
@@ -225,6 +225,32 @@ const portfolioHomeTemplate = [
                 id: "home",
                 children: [
                     { tag: "h1", class: "content-title", text: "Home"},
+                    {
+                        tag: "div",
+                        class: "surface big",
+                        children: [
+                            { tag: "h1", class: "", text: "Hey, I'm Hidde Aalders!" },
+                            { tag: "p", text: "An aspiring web developer passionate about crafting sleek and responsive web experiences." },
+                            {
+                                tag: "p",
+                                children: [
+                                    { tag: null, text: "Currently studying web development at " },
+                                    { tag: "a", href: "https://www.reacollege.nl/heerhugowaard/", text: "Rea College" },
+                                    { tag: null, text: " Heerhugowaard." }
+                                ]
+                            },
+                            {
+                                tag: "p",
+                                children: [
+                                    { tag: null, text: "Want to learn more about me? Check out the " },
+                                    { tag: "a", href: "#about", text: "About" },
+                                    { tag: null, text: " section and see some of my " },
+                                    { tag: "a", href: "#projects", text: "projects" },
+                                    { tag: null, text: " too!" }
+                                ]
+                            }
+                        ]
+                    },
                 ]
             },
             {
@@ -232,7 +258,74 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "About",
                 children: [
-                    { tag: "h1", class: "content-title", text: "About" }
+                    { tag: "h1", class: "content-title", text: "About" },
+                    {
+                        tag: "div",
+                        class: "big surface",
+                        children: [
+                            {
+                                tag: "p",
+                                children: [
+                                    { tag: null, text: "I'm Hidde Aalders, a aspiring web developer  CONTINUE HERE" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        tag: "div",
+                        class: "wrapper row",
+                        children: [
+                            {
+                                tag: "div",
+                                class: "surface",
+                                children: [
+                                    { tag: "h2", text: "Hobbies" },
+                                    {
+                                        tag: "p",
+                                        children: [
+                                            { tag: null, text: "In my free time I love to play games like " },
+                                            { tag: "a", href: "https://www.minecraft.net/", text: "Minecraft" },
+                                            { tag: null, text: ", the Marvel's " },
+                                            { tag: "a", href: "https://en.wikipedia.org/wiki/Marvel%27s_Spider-Man_(video_game)", text: "Spider-Man" },
+                                            { tag: null, text: "games and " },
+                                            { tag: "a", href: "https://www.nintendo.com/nl-nl/Games/Nintendo-Switch-games/The-Legend-of-Zelda-Tears-of-the-Kingdom-1576884.html", text: "The Legend of Zelda: Tears of the Kingdom" },
+                                            { tag: null, text: " to name a few." }
+                                        ]
+                                    },
+                                    { tag: "p", text: "I also love coding in my free time learning new things to create personal projects or ideas. I'm also interested in game development." },
+                                    {
+                                        tag: "p",
+                                        children: [
+                                            { tag: null, text: "And I enjoy watching movies and shows like the " },
+                                            { tag: "a", href: "https://www.marvel.com/movies/iron-man", text: "Iron Man" },
+                                            { tag: null, text: "movies, the " },
+                                            { tag: "a", href: "https://intothespiderverse.fandom.com/wiki/Spider-Verse_Saga", text: "Spider-Verse" },
+                                            { tag: null, text: " movies, " },
+                                            { tag: "a", href: "https://en.wikipedia.org/wiki/Prison_Break", text: "Prison Break" },
+                                            { tag: null, text: " and " },
+                                            { tag: "a", href: "https://www.imdb.com/title/tt1865718/", text: "Gravity Falls " },
+                                            { tag: null, text: "." }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                tag: "div",
+                                class: "surface",
+                                children: [
+                                    { tag: "h2", text: "Work Experience" },
+                                    {
+                                        tag: "p",
+                                        children: [
+                                            { tag: null, text: "I currently work at " },
+                                            { tag: "a", href: "https://www.hema.nl", text: "HEMA" },
+                                            { tag: null, text: " where I have developed strong skills in customer service.  CONTINUE HERE" }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
             },
             {
@@ -256,7 +349,97 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "downloads",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Downloads" }
+                    { tag: "h1", class: "content-title", text: "Downloads" },
+                    {
+                        tag: "div",
+                        class: "downloads-wrapper wrapper row",
+                        children: [
+                            {
+                                tag: "div",
+                                class: "download surface wrapper row space-between",
+                                children: [
+                                    {
+                                        tag: "div",
+                                        class: "icon-text-wrapper wrapper row",
+                                        children: [
+                                            { tag: "i", class: "file-icon fa-solid fa-file-lines"},
+                                            { tag: "p", class: "file-name", text: "test.txt" }
+                                        ]
+                                    },
+                                    {
+                                        tag: "a",
+                                        href: "downloads/test.txt",
+                                        download: "test.txt",
+                                        class: "download-btn btn",
+                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                    }
+                                ]
+                            },
+                            {
+                                tag: "div",
+                                class: "download surface wrapper row space-between",
+                                children: [
+                                    {
+                                        tag: "div",
+                                        class: "icon-text-wrapper wrapper row",
+                                        children: [
+                                            { tag: "i", class: "file-icon fa-solid fa-file-lines"},
+                                            { tag: "p", class: "file-name", text: "test.txt" }
+                                        ]
+                                    },
+                                    {
+                                        tag: "a",
+                                        href: "downloads/test.txt",
+                                        download: "test.txt",
+                                        class: "download-btn btn",
+                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                    }
+                                ]
+                            },
+                            {
+                                tag: "div",
+                                class: "download surface wrapper row space-between",
+                                children: [
+                                    {
+                                        tag: "div",
+                                        class: "icon-text-wrapper wrapper row",
+                                        children: [
+                                            { tag: "i", class: "file-icon fa-solid fa-file-lines"},
+                                            { tag: "p", class: "file-name", text: "test.txt" }
+                                        ]
+                                    },
+                                    {
+                                        tag: "a",
+                                        href: "downloads/test.txt",
+                                        download: "test.txt",
+                                        class: "download-btn btn",
+                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                    }
+                                ]
+                            },
+                            {
+                                tag: "div",
+                                class: "download surface wrapper row space-between",
+                                children: [
+                                    {
+                                        tag: "div",
+                                        class: "icon-text-wrapper wrapper row",
+                                        children: [
+                                            { tag: "i", class: "file-icon fa-solid fa-file-lines"},
+                                            { tag: "p", class: "file-name", text: "test.txt" }
+                                        ]
+                                    },
+                                    {
+                                        tag: "a",
+                                        href: "downloads/test.txt",
+                                        download: "test.txt",
+                                        class: "download-btn btn",
+                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                    }
+                                ]
+                            },
+                        ]
+                    }
                 ]
             }
         ]

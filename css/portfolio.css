@@ -103,14 +103,14 @@
     width: 5em;
     height: auto;
     flex-shrink: 0;
+    border: var(--border);
 }
 
 .profile .wrapper {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     white-space: nowrap;
     overflow: hidden;
+    gap: 0px;
     text-overflow: ellipsis;
 }
 
@@ -150,7 +150,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1em;
+    gap: 2em;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 0.5em;
@@ -162,12 +162,26 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
+    width: 100%;
 }
 
 .content-title {
     align-self: flex-start;
     font-weight: 600;
     letter-spacing: 1px;
+}
+
+/* downloads */
+.downloads-col {
+    flex: 1;
+}
+
+.download.surface {
+    width: 100%;
+}
+
+.file-icon {
+    font-size: 1.5em;
 }
 
 /* buttons */
@@ -182,7 +196,13 @@ button,
     cursor: pointer;
     aspect-ratio: unset;
     padding: 0.5em;
+    text-align: center;
     transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+button.wide,
+.btn.wide {
+    padding: 0.25em 2em;
 }
 
 button:hover,
@@ -218,9 +238,56 @@ a[href^="http"]::after { /* external link */
     content: "\f14c";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
-    margin-left: 0.25em;
+    margin: 0px 0.25em 0px 0.25em;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+/* surface */
+.surface {
+    background-color: var(--surface-bg-color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+}
+
+.surface.big {
+    flex: 1;
+    width: 100%;
+}
+
+.surface:hover {
+    background-color: var(--surface-bg-color-hover);
+}
+
+/* wrappers */
+.wrapper {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.wrapper.row {
+    flex-direction: row;
+}
+
+.wrapper.col {
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.wrapper.space-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper > .surface {
+    flex: 1;
 }

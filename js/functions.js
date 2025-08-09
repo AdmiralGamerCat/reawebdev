@@ -9,6 +9,10 @@ function createElement(tagOrArray, options = {}) {
         tag = tagOrArray;
     }
 
+    if (tag === null) {
+        return document.createTextNode(options.text || "");
+    }
+
     const element = document.createElement(tag);
 
     if (options.id) { element.id = options.id };
@@ -19,6 +23,7 @@ function createElement(tagOrArray, options = {}) {
     if (options.target) { element.setAttribute("target", options.target) };
     if (options.type) { element.setAttribute("type", options.type) };
     if (options.for) { element.setAttribute("for", options.for) };
+    if (options.download) { element.download = options.download }
 
     if (Array.isArray(options.children) && options.children.length > 0) {
         let childElement;
