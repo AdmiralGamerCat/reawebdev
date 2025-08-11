@@ -155,6 +155,7 @@
     overflow-x: hidden;
     padding-right: 0.5em;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
     transition: all 0.3s ease;
 }
 
@@ -178,10 +179,15 @@
 
 .download.surface {
     width: 100%;
+    min-width: calc(50% - 1em);
 }
 
 .file-icon {
     font-size: 1.5em;
+}
+
+.download-btn .btn-icon {
+    transform: translateY(0.25em);
 }
 
 /* buttons */
@@ -276,11 +282,21 @@ a:hover {
 
 .wrapper.row {
     flex-direction: row;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .wrapper.row:not(.download, .download-btn, .icon-text-wrapper) {
+        flex-direction: column;
+    }
+
+    #portfolioTabContent {
+        flex-direction: column;
+    }
 }
 
 .wrapper.col {
     flex-direction: column;
-    /* align-items: center; */
 }
 
 .wrapper.space-between {

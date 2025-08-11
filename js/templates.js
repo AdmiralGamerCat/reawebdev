@@ -333,7 +333,22 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "projects",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Projects" }
+                    { tag: "h1", class: "content-title", text: "Projects" },
+                    { tag: "h2", class: "content-subtitle", text: "HTML related projects" },
+                    {
+                        tag: "div",
+                        class: "projects-container wrapper row",
+                        children: [
+                            {
+                                tag: "div",
+                                class: "project surface wrapper col"
+                            },
+                            {
+                                tag: "div",
+                                class: "project surface wrapper col"
+                            }
+                        ]
+                    }
                 ]
             },
             {
@@ -370,8 +385,11 @@ const portfolioHomeTemplate = [
                                         tag: "a",
                                         href: "downloads/test.txt",
                                         download: "test.txt",
-                                        class: "download-btn btn",
-                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                        class: "download-btn btn wrapper row",
+                                        children: [
+                                            { tag: "i", class: "btn-icon fa-solid fa-download" },
+                                            { tag: "p", text: "Download" }
+                                        ]
                                     }
                                 ]
                             },
@@ -391,8 +409,11 @@ const portfolioHomeTemplate = [
                                         tag: "a",
                                         href: "downloads/test.txt",
                                         download: "test.txt",
-                                        class: "download-btn btn",
-                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                        class: "download-btn btn wrapper row",
+                                        children: [
+                                            { tag: "i", class: "btn-icon fa-solid fa-download" },
+                                            { tag: "p", text: "Download" }
+                                        ]
                                     }
                                 ]
                             },
@@ -412,8 +433,11 @@ const portfolioHomeTemplate = [
                                         tag: "a",
                                         href: "downloads/test.txt",
                                         download: "test.txt",
-                                        class: "download-btn btn",
-                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                        class: "download-btn btn wrapper row",
+                                        children: [
+                                            { tag: "i", class: "btn-icon fa-solid fa-download" },
+                                            { tag: "p", text: "Download" }
+                                        ]
                                     }
                                 ]
                             },
@@ -433,8 +457,11 @@ const portfolioHomeTemplate = [
                                         tag: "a",
                                         href: "downloads/test.txt",
                                         download: "test.txt",
-                                        class: "download-btn btn",
-                                        children: [ { tag: "i", class: "btn-icon fa-solid fa-download" } ]
+                                        class: "download-btn btn wrapper row",
+                                        children: [
+                                            { tag: "i", class: "btn-icon fa-solid fa-download" },
+                                            { tag: "p", text: "Download" }
+                                        ]
                                     }
                                 ]
                             },
