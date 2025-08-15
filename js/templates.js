@@ -136,7 +136,7 @@ const portfolioHomeTemplate = [
                                 class: "btn",
                                 href: "#home",
                                 children: [
-                                    { tag: "i", class: "nav-item-icon fa-solid fa-house" },
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-house gradient" },
                                     { tag: "p", class: "nav-item-text", text: "Home" }
                                 ]
                             }
@@ -151,7 +151,7 @@ const portfolioHomeTemplate = [
                                 class: "btn",
                                 href: "#about",
                                 children: [
-                                    { tag: "i", class: "nav-item-icon fa-solid fa-user" },
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-user gradient" },
                                     { tag: "p", class: "nav-item-text", text: "About" }
                                 ]
                             }
@@ -166,7 +166,7 @@ const portfolioHomeTemplate = [
                                 class: "btn",
                                 href: "#projects",
                                 children: [
-                                    { tag: "i", class: "nav-item-icon fa-solid fa-folder" },
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-folder gradient" },
                                     { tag: "p", class: "nav-item-text", text: "Projects" }
                                 ]
                             }
@@ -181,7 +181,7 @@ const portfolioHomeTemplate = [
                                 class: "btn",
                                 href: "#contact",
                                 children: [
-                                    { tag: "i", class: "nav-item-icon fa-solid fa-comments" },
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-comments gradient" },
                                     { tag: "p", class: "nav-item-text", text: "Contact" }
                                 ]
                             }
@@ -196,7 +196,7 @@ const portfolioHomeTemplate = [
                                 class: "btn",
                                 href: "#downloads",
                                 children: [
-                                    { tag: "i", class: "nav-item-icon fa-solid fa-download" },
+                                    { tag: "i", class: "nav-item-icon fa-solid fa-download gradient" },
                                     { tag: "p", class: "nav-item-text", text: "Downloads" }
                                 ]
                             }
@@ -224,12 +224,19 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "home",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Home"},
+                    {
+                        tag: "h1",
+                        class: "content-title wrapper row",
+                        children: [
+                            { tag: "i", class: "fa-solid fa-house icon-shift gradient" },
+                            { tag: null, class: "content-title", text: "Home" }
+                        ]
+                    },
                     {
                         tag: "div",
                         class: "surface big",
                         children: [
-                            { tag: "h1", class: "", text: "Hey, I'm Hidde Aalders!" },
+                            { tag: "h1", text: "Hey, I'm Hidde Aalders!" },
                             { tag: "p", text: "An aspiring web developer passionate about crafting sleek and responsive web experiences." },
                             {
                                 tag: "p",
@@ -256,9 +263,16 @@ const portfolioHomeTemplate = [
             {
                 tag: "div",
                 class: "content-section",
-                id: "About",
+                id: "about",
                 children: [
-                    { tag: "h1", class: "content-title", text: "About" },
+                    {
+                        tag: "h1",
+                        class: "content-title wrapper row",
+                        children: [
+                            { tag: "i", class: "fa-solid fa-user icon-shift gradient" },
+                            { tag: null, text: "About" }
+                        ]
+                    },
                     {
                         tag: "div",
                         class: "big surface",
@@ -266,7 +280,19 @@ const portfolioHomeTemplate = [
                             {
                                 tag: "p",
                                 children: [
-                                    { tag: null, text: "I'm Hidde Aalders, a aspiring web developer  CONTINUE HERE" }
+                                    // { tag: null, text: "Hi there, i'm Hidde Aalders. Welcome to my website. I'm living in Enkhuizen and an aspiring web developer. I'm a cat lover and really love to fly with my drone. On my website you can find some of my products. I'm a passionate website builder, i have an eye for detail and design, an easy guy to get along with and i'm eager to learn new things. When you want to know more about me or have questions after visiting my website, feel free to contact me and click on the contact button. " },
+                                    { tag: "p", text: "Welcome to my portfolio! I'm Hidde Aalders." },
+                                    { tag: "br" },
+                                    {
+                                        tag: "p",
+                                        children: [
+                                            { tag: null, text: "I'm an aspiring web developer currently learning at " },
+                                            { tag: "a", href: "https://www.reacollege.nl/heerhugowaard/", text: "Rea College" },
+                                            { tag: null, text: " Heerhugowaard where I create cool " },
+                                            { tag: "a", href: "#projects", text: "projects" },
+                                            { tag: null, text: " along the way." }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
@@ -313,7 +339,7 @@ const portfolioHomeTemplate = [
                                 tag: "div",
                                 class: "surface",
                                 children: [
-                                    { tag: "h2", text: "Work Experience" },
+                                    { tag: "h2", text: "Education and work" },
                                     {
                                         tag: "p",
                                         children: [
@@ -321,6 +347,10 @@ const portfolioHomeTemplate = [
                                             { tag: "a", href: "https://www.hema.nl", text: "HEMA" },
                                             { tag: null, text: " where I have developed strong skills in customer service.  CONTINUE HERE" }
                                         ]
+                                    },
+                                    {
+                                        tag: "p",
+                                        text: ""
                                     }
                                 ]
                             }
@@ -333,7 +363,14 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "projects",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Projects" },
+                    {
+                        tag: "h1",
+                        class: "content-title wrapper row",
+                        children: [
+                            { tag: "i", class: "fa-solid fa-folder icon-shift gradient" },
+                            { tag: null, text: "Projects" }
+                        ]
+                    },
                     { tag: "h2", class: "content-subtitle", text: "HTML related projects" },
                     {
                         tag: "div",
@@ -356,7 +393,14 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "contact",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Contact" }
+                    {
+                        tag: "h1",
+                        class: "content-title wrapper row",
+                        children: [
+                            { tag: "i", class: "fa-solid fa-comments icon-shift gradient" },
+                            { tag: null, text: "Contact" }
+                        ]
+                    }
                 ]
             },
             {
@@ -364,7 +408,14 @@ const portfolioHomeTemplate = [
                 class: "content-section",
                 id: "downloads",
                 children: [
-                    { tag: "h1", class: "content-title", text: "Downloads" },
+                    {
+                        tag: "h1",
+                        class: "content-title wrapper row",
+                        children: [
+                            { tag: "i", class: "fa-solid fa-download icon-shift gradient" },
+                            { tag: null, text: "Downloads" }
+                        ]
+                    },
                     {
                         tag: "div",
                         class: "downloads-wrapper wrapper row",

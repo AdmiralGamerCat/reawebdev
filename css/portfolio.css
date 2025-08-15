@@ -1,8 +1,8 @@
 :root {
     /* background colors */
-    --bg-color-1: #202020;
-    --surface-bg-color: #2b2b2b;
-    --surface-bg-color-hover: #323232;
+    --bg-color-1: linear-gradient(to bottom, #202020, #181818);
+    --surface-bg-color: linear-gradient(to bottom, rgba(51, 51, 51, 0.8), rgba(43, 43, 43, 0.8), rgba(34, 34, 34, 0.8));
+    --surface-bg-color-hover: rgba(50, 50, 50, 0.8);
 
     /* button background colors */
     --btn-bg-color: #373737;
@@ -21,10 +21,19 @@
 
     /* text */
     --link-text-color: #9CEBFF;
+
+    /* accent color */
+    --accent-color: #00B8A9; /* Default */
+    --accent-color-hover: #1DD2C3; /* Hover */
+    --accent-color-active: #009688; /* Active */
+}
+
+.accent {
+    color: var(--accent-color);
 }
 
 #portfolioTabContent {
-    background-color: var(--bg-color-1);
+    background: var(--bg-color-1);
     display: flex;
     flex-direction: row;
     padding: 1em;
@@ -120,7 +129,7 @@
     gap: 0.5em;
     overflow: hidden;
     max-width: 231px;
-    max-height: 249px;
+    max-height: 257px;
     transform-origin: left center;
     transition: max-height 0.3s ease, max-width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
@@ -156,6 +165,8 @@
     padding-right: 0.5em;
     scroll-behavior: smooth;
     scrollbar-width: thin;
+    max-width: 2000px;
+    margin: 0 auto;
     transition: all 0.3s ease;
 }
 
@@ -206,6 +217,11 @@ button,
     transition: background-color 0.3s ease, border 0.3s ease;
 }
 
+button.accent,
+.btn.accent {
+    background-color: var(--accent-color);
+}
+
 button.wide,
 .btn.wide {
     padding: 0.25em 2em;
@@ -215,6 +231,11 @@ button:hover,
 .btn:hover {
     background-color: var(--btn-bg-color-hover);
     border: var(--btn-border-hover);
+}
+
+button.accent:hover,
+.btn.accent:hover {
+    background-color: var(--accent-color-hover);
 }
 
 button:active,
@@ -253,7 +274,7 @@ a:hover {
 
 /* surface */
 .surface {
-    background-color: var(--surface-bg-color);
+    background: var(--surface-bg-color);
     border: var(--border);
     border-radius: var(--border-radius);
     padding: 1em;
@@ -282,11 +303,25 @@ a:hover {
 
 .wrapper.row {
     flex-direction: row;
-    justify-content: center;
+}
+
+.icon-shift {
+    transform: translateY(0.2em);
+}
+
+.content-title.wrapper {
+    gap: 0.5em;
+}
+
+i.gradient {
+  background: linear-gradient(to bottom right, white, #f1f1f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
 }
 
 @media (max-width: 600px) {
-    .wrapper.row:not(.download, .download-btn, .icon-text-wrapper) {
+    .wrapper.row:not(.download, .download-btn, .icon-text-wrapper, .content-title) {
         flex-direction: column;
     }
 
