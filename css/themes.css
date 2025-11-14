@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --padding: 9px;
+    --border-radius: 8px;
+    --font-size: 14px;
+    --text-color: #CCCCCC;
+    --font-family-ui: "Inter", sans-serif;
+}
+
+[data-theme="dark"] {
+    --main-bg: #1E1E1E;
+    --title-bar-bg: #3C3C3C;
+    --titile-bar-hover-color: #454646;
+
+    /* footer */
+    --footer-bg: #4679C6;
+    --footer-hover-color: #5C89CD;
+}
