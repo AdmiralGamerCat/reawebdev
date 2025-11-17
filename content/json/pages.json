@@ -1,0 +1,14 @@
+[
+    {
+        "id": "welcome",
+        "title": "Welcome.md",
+        "icon": "markdown.svg",
+        "content": "<h1>Hey, I'm Hidde Aalders!</h1>\n<pre class: \"code-block\">\n<code>\n1  {\n2     \"theme\": \"dark\"\n3  }\n</code>\n</pre>"
+    },
+    {
+        "id": "bye",
+        "title": "TEST",
+        "icon": "vscode.svg",
+        "content": "<h1>TEST</h1>"
+    }
+]

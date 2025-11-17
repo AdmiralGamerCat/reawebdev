@@ -11,7 +11,18 @@
 [data-theme="dark"] {
     --main-bg: #1E1E1E;
     --title-bar-bg: #3C3C3C;
-    --titile-bar-hover-color: #454646;
+    --title-bar-hover-color: #454646;
+
+    /* tabs */
+    --tab-bg: #2D2D2D;
+    --tab-hover-bg: #1E1E1E;
+    --tabs-container-hover-color: #313232;
+
+    /* sidebar */
+    --sidebar-bg: #333333;
+    --sidebar-content-bg: #252526;
+
+    --tabs-container-bg: #252526;
 
     /* footer */
     --footer-bg: #4679C6;

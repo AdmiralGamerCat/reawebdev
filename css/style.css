@@ -24,7 +24,42 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: var(--padding);
+  position: relative;
+}
+
+.title-bar .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title-bar .wrapper.left {
+  max-width: 25%;
+  overflow: hidden;
+  position: relative;
+}
+
+.title-bar .wrapper.left::after {
+  content: "";
+  width: 5%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  user-select: none;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--title-bar-bg));
+}
+
+.title-bar .wrapper.right {
+  height: 100%;
+}
+
+.title-bar .wrapper.right button {
+  height: 100%;
+  border-radius: 0px;
+  aspect-ratio: 1.3/1;
 }
 
 .title-bar button {
@@ -32,16 +67,120 @@ html, body {
 }
 
 .title-bar button:hover {
-  background-color: var(--titile-bar-hover-color);
+  background-color: var(--title-bar-hover-color);
 }
 
-/* view PS: It's f*cking everything */
-.view {
+/* view */
+#view {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
+/* sidebar */
+#sidebar {
+  background-color: var(--sidebar-bg);
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#sidebar button {
+  position: relative;
+}
+
+#sidebar button.active::after {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: var(--text-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#sidebar button img.icon {
+  font-size: 2em;
+  transition: filter 0.3s ease;
+}
+
+#sidebar button:not(.active, :hover) img.icon {
+  filter: brightness(0.5);
+}
+
+#sidebar-content {
+  height: 100%;
+  width: 200px;
+  background-color: var(--sidebar-content-bg);
+}
+
+/* content container */
+#content-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#tabs-container {
+  display: flex;
+  width: 100%;
+  gap: 1px;
+  overflow-x: auto;
+  background-color: var(--tabs-container-bg);
+}
+
+#tabs-container button:not(.tab) {
+  border-radius: var(--border-radius);
+}
+
+#tabs-container button:not(.tab):hover {
+  background-color: var(--tabs-container-hover-color);
+}
+
+.tab {
+  background-color: var(--tab-bg);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.tab.active {
+  background-color: var(--tab-hover-bg);
+}
+
+/* tab content container */
+#tab-content-container {
+  width: 100%;
+  height: 100%;
+  padding: var(--padding);
+  position: relative;
+  background-color: var(--main-bg);
+}
+
+#tab-content-container:empty {
+  background-color: #151515;
+  -webkit-mask: url(./../content/icons/vscode.svg) center/25% no-repeat;
+}
+
+
+/* footer */
+footer {
+  background-color: var(--footer-bg);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer button:hover {
+  background-color: var(--footer-hover-color);
+}
+
+/* non-specific */
 /* button */
 button {
   padding: 0.25em 0.5em;
@@ -49,11 +188,15 @@ button {
   border: none;
   color: var(--text-color);
   background-color: transparent;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5em;
+  transition: background-color 0.3s ease;
+}
+
+button.close:hover {
+  background-color: #E81023;
 }
 
 /* icons */
@@ -78,24 +221,14 @@ button .icon {
   align-items: center;
 }
 
+.wrapper.column {
+  flex-direction: column;
+}
+
 .wrapper.padding {
   padding: var(--padding);
 }
 
 .wrapper.gap {
   gap: var(--padding);
-}
-
-/* footer */
-footer {
-  background-color: var(--footer-bg);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--padding) 0 var(--padding);
-}
-
-footer button:hover {
-  background-color: var(--footer-hover-color);
 }

@@ -13,7 +13,7 @@
     <body>
         <div id="container">
             <div class="title-bar">
-                <div class="wrapper padding">
+                <div class="wrapper padding left">
                     <img src="./content/icons/vscode.svg" alt="vscode icon" class="icon">
                     <button>File</button>
                     <button>Edit</button>
@@ -25,13 +25,34 @@
                     <button>Help</button>
                 </div>
                 <p class="title">Hidde Aalders Portfolio</p>
-                <div class="wrapper gap">
-                    <button><img src="./content/icons/minimize-window.svg" alt="minimize-window icon" class="icon"></button>
-                    <button><img src="./content/icons/shrink-window.svg" alt="shrink-window icon" class="icon"></button>
-                    <button><img src="./content/icons/close.svg" alt="close icon" class="icon"></button>
+                <div class="wrapper right">
+                    <button title="Minimize"><img src="./content/icons/minimize-window.svg" alt="minimize-window icon" class="icon"></button>
+                    <button title="Restore"><img src="./content/icons/shrink-window.svg" alt="shrink-window icon" class="icon"></button>
+                    <button title="Close" class="close"><img src="./content/icons/close.svg" alt="close icon" class="icon"></button>
                 </div>
             </div>
-            <div class="view"></div>
+            <div id="view">
+                <div id="sidebar">
+                    <button class="active" title="Explorer">
+                        <img src="./content/icons/files.svg" alt="files icon" class="icon">
+                    </button>
+                    <div class="wrapper column">
+                        <button title="Hidde Aalders">
+                            <img src="./content/icons/user.svg" alt="user icon" class="icon">
+                        </button>
+                        <button title="Settings">
+                            <img src="./content/icons/cog.svg" alt="cog icon" class="icon">
+                        </button>
+                    </div>
+                </div>
+                <div id="sidebar-content">
+                </div>
+                <div id="content-container">
+                    <div id="tabs-container">
+                    </div>
+                    <div id="tab-content-container"></div>
+                </div>
+            </div>
             <footer>
                 <div class="wrapper gap">
                     <button title="reawebdev (Git) - main">
