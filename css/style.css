@@ -112,9 +112,17 @@ html, body {
 
 #sidebar-content {
   height: 100%;
-  width: 200px;
+  width: 0;
+  max-width: 200px;
   background-color: var(--sidebar-content-bg);
+  overflow: hidden;
+  transition: width 0.3s ease;
 }
+
+#sidebar-content.open {
+  width: 100%;
+}
+
 
 /* content container */
 #content-container {
@@ -127,7 +135,7 @@ html, body {
 
 #tabs-container {
   display: flex;
-  width: 100%;
+  max-width: 100%;
   gap: 1px;
   overflow-x: auto;
   background-color: var(--tabs-container-bg);
@@ -181,6 +189,8 @@ html, body {
   padding: var(--padding);
   transition: background-color 0.3s ease;
   padding-left: calc(2 * var(--padding));
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .folder {
@@ -224,11 +234,18 @@ html, body {
 .folder-children-container::before {
   content: "";
   width: 2px;
-  height: 100%;
+  height: 0%;
   position: absolute;
   top: 0;
   left: var(--padding);
-  background-color: red;
+  background-color: var(--text-color);
+  border-radius: 0px 0px 1px 1px;
+  filter: brightness(0.5);
+  transition: height 0.3s ease;
+}
+
+.folder-children-container.open::before {
+  height: 100%;
 }
 
 .folder-children-container.open {

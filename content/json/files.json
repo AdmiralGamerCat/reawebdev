@@ -4,7 +4,7 @@
         "id": "welcome",
         "title": "Welcome.md",
         "icon": "markdown.svg",
-        "content": "<h1>Hey, I'm Hidde Aalders!</h1>"
+        "content": "<h1>Welcome!</h1>"
     },
     {
         "type": "folder",
@@ -13,8 +13,9 @@
         "children": [
             {
                 "type": "file",
+                "id": "testFile",
                 "title": "Test File",
-                "icon": "error-triangle.svg",
+                "icon": "error-circle.svg",
                 "content": "<h1>Test File</h1>"
             }
         ]
