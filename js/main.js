@@ -11,139 +11,106 @@ let activeTabId = null;
 
 "use strict";
 
-const fetchPage = async (pageId) => {
-    const response = await fetch("./content/json/pages.json");
-    const result = await response.json();
+// helper functions
+const fetchFiles = async () => {
+    const response = await fetch("./content/json/files.json");
+    return await response.json();
+}
 
-    const page = result.find(page => page.id === pageId);
+const fetchFileItem = async (id) => {
+    const files = await fetchFiles();
+    const fileItem = files.find(fileItem => fileItem.id === id);
 
-    if (!page) {
-        console.error(`Page with id "${pageId}" not found.`);
+    if (!fileItem) {
+        console.error(`Failed to fetch file item "${id}".`);
         return;
     }
 
-    // console.log("Page found:", page);
-    return page;
-};
+    return fileItem;
+}
 
 const createElement = (tag, attributes = {}, children = []) => {
     const element = document.createElement(tag);
 
-    for (const key in attributes) {
-        const value = attributes[key];
-
+    for (const [key, value] of Object.entries(attributes)) {
         if (key === "class") element.className = value;
         else if (key === "html") element.innerHTML = value;
         else if (key === "dataset") {
-            for (const dataKey in value) {
+            value.forEach(dataKey => {
                 element.dataset[dataKey] = value[dataKey];
-            }
+            })
         }
         else element.setAttribute(key, value);
     }
 
-    children.forEach((child) => {
-        element.appendChild(
-            typeof child === "string" 
-            ? document.createTextNode(child) 
-            : child
-        );
-    });
+    children.forEach(child => {
+        element.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
+    })
 
     return element;
-};
-
-
-const saveState = () => {
-    const state = { openTabs, activeTabId };
-    localStorage.setItem("portfolio-hidde-aalders-state", JSON.stringify(state));
 }
 
-// tab functions
-const openPage = async (pageId) => {
-    const page = await fetchPage(pageId);
-    if (!page) return;
+// const saveState = () => {
+//     const state = { openTabs, activeTabId };
+//     localStorage.setItem("portfolio-hidde-aalders-state", state);
+// }
 
-    tabContentContainer.innerHTML = page.content;
+// sidebar content
+const renderSidebarContent = async () => {
+    const files = await fetchFiles();
+    sidebarContent.innerHTML = "";
 
-    // console.log(`Opened page ${pageId}.`);
+    files.forEach(file => {
+        sidebarContent.appendChild(createSidebarItem(file));
+    });
 }
 
-const createTab = (page) => {
-    if (openTabs.includes(page.id)) {
-        // console.log(`Tab "${page.id}" already open.`);
-        return;
-    }
+const createSidebarItem = (item) => {
+    if (item.type === "folder") {
+        return createFolderElement(item);
+    } else if (item.type === "file") {
+        return createFileElement(item);
+    };
+}
 
-    const tab = createElement("button",
-        { class: "tab", "data-id": page.id },
+const createFolderElement = (folder) => {
+    const folderElement = createElement("div", { class: "folder" });
+    const header = createElement("header", { class: "folder-header" },
         [
-            createElement("img", { class: "icon", src: `./content/icons/${page.icon}` }),
-            createElement("span", {}, [ page.title ]),
-            createElement("button", { class: "close-tab" },
-                [ createElement("img", { class: "icon", src: "./content/icons/close.svg" }) ]
-            )
+            createElement("img", { class: "icon", src: `./content/icons/${folder.icon}` }),
+            folder.title
         ]
-    )
+    );
 
-    tabsContainer.appendChild(tab);
+    const childrenContainer = createElement("div", { class: "folder-children-container" });
 
-    openTabs.push(page.id);
-    // console.log(`Tab "${page.id}" created.`);
-}
-
-const switchTab = async (pageId) => {
-    document.querySelectorAll(".tab").forEach(tab => {
-        tab.classList.remove("active");
+    folder.children.forEach(child => {
+        childrenContainer.appendChild(createSidebarItem(child));
     });
 
-    const activeTab = document.querySelector(`[data-id="${pageId}"]`);
-    if (activeTab) activeTab.classList.add("active");
+    header.addEventListener("click", () => {
+        childrenContainer.classList.toggle("open");
+    });
 
-    activeTabId = pageId;
-
-    await openPage(pageId);
-    // console.log(`Switched to tab "${pageId}"`);
+    folderElement.appendChild(header);
+    folderElement.appendChild(childrenContainer);
+    return folderElement;
 }
 
-const openTab = async (pageId) => {
-    const page = await fetchPage(pageId);
+const createFileElement = (file) => {
+    const fileElement = createElement("div", { class: "file", "data-file-id": file.id },
+        [
+            createElement("img", { class: "icon", src: `./content/icons/${file.icon}` }),
+            file.title
+        ]
+    );
 
-    if (!page) return;
+    fileElement.addEventListener("click", () => {
+        openTab(file.id)
+    });
 
-    createTab(page);
-    await switchTab(page.id);
+    return fileElement;
 }
 
-const closeTab = (pageId) => {
-    const tab = document.querySelector(`[data-id="${pageId}"]`);
-    if (tab) tab.remove();
-
-    openTabs = openTabs.filter(id => id !== pageId);
-
-    if (activeTabId === pageId) {
-        const lastOpened = openTabs[openTabs.length - 1];
-        if (lastOpened) switchTab(lastOpened)
-        else tabContentContainer.innerHTML = "";
-    }
-}
-
-tabsContainer.addEventListener("click", (event) => {
-    const closeButton = event.target.closest(".close-tab");
-    if (closeButton) {
-        const tab = closeButton.closest(".tab");
-        closeTab(tab.dataset.id);
-        return;
-    }
-
-    const tab = event.target.closest(".tab");
-    if (!tab) return;
-
-    switchTab(tab.dataset.id);
-})
-
-openTab("welcome");
-
-setTimeout(() => {
-    openTab("bye");
-}, 1000);
+// tab / page
+renderSidebarContent();

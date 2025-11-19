@@ -145,7 +145,15 @@ html, body {
   background-color: var(--tab-bg);
   display: flex;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transform-origin: center left;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.tab.hidden {
+  transform: scaleX(0);
+  user-select: none;
+  pointer-events: none;
 }
 
 .tab.active {
@@ -164,6 +172,67 @@ html, body {
 #tab-content-container:empty {
   background-color: #151515;
   -webkit-mask: url(./../content/icons/vscode.svg) center/25% no-repeat;
+}
+
+.file,
+.folder-header {
+  display: flex;
+  align-items: center;
+  padding: var(--padding);
+  transition: background-color 0.3s ease;
+  padding-left: calc(2 * var(--padding));
+}
+
+.folder {
+  position: relative;
+}
+
+.folder-header {
+  position: relative;
+}
+
+.folder-header::before {
+  content: url(./../content/icons/arrow.svg);
+  height: 50%;
+  width: auto;
+  aspect-ratio: 1/1;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.folder:has(.folder-children-container.open) .folder-header::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+
+.file:hover,
+.folder-header:hover {
+  background-color: var(--sidebar-hover-color);
+}
+
+.folder-children-container {
+  padding-left: calc(2 * var(--padding));
+  height: 0px;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.3s ease;
+}
+
+.folder-children-container::before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: var(--padding);
+  background-color: red;
+}
+
+.folder-children-container.open {
+  height: fit-content;
 }
 
 

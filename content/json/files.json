@@ -1,0 +1,22 @@
+[
+    {
+        "type": "file",
+        "id": "welcome",
+        "title": "Welcome.md",
+        "icon": "markdown.svg",
+        "content": "<h1>Hey, I'm Hidde Aalders!</h1>"
+    },
+    {
+        "type": "folder",
+        "title": "Test Folder",
+        "icon": "folder.svg",
+        "children": [
+            {
+                "type": "file",
+                "title": "Test File",
+                "icon": "error-triangle.svg",
+                "content": "<h1>Test File</h1>"
+            }
+        ]
+    }
+]

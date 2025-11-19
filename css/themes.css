@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-    --padding: 9px;
+    --padding: 8px;
     --border-radius: 8px;
     --font-size: 14px;
     --text-color: #CCCCCC;
@@ -21,6 +21,7 @@
     /* sidebar */
     --sidebar-bg: #333333;
     --sidebar-content-bg: #252526;
+    --sidebar-hover-color: #2B2D2E;
 
     --tabs-container-bg: #252526;
 
