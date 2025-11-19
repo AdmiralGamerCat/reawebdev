@@ -11,7 +11,7 @@ export const createElement = (tag, attributes = {}, children = []) => {
     }
 
     children.forEach(child => {
-        element.appendChild(createElement(child));
+        element.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
     })
 
     return element;

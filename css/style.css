@@ -112,17 +112,11 @@ html, body {
 
 #sidebar-content {
   height: 100%;
-  width: 0;
-  max-width: 200px;
+  width: 200px;
   background-color: var(--sidebar-content-bg);
   overflow: hidden;
   transition: width 0.3s ease;
 }
-
-#sidebar-content.open {
-  width: 100%;
-}
-
 
 /* content container */
 #content-container {

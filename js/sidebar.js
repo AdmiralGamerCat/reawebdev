@@ -1,6 +1,7 @@
 "use strict";
 
-import { createElement, fetchFiles } from "./helper-functions";
+import { createElement, fetchFiles } from "./helper-functions.js";
+import { openTab } from "./tab-system.js";
 
 const sidebarContent = document.querySelector("#sidebar-content");
 
@@ -11,7 +12,7 @@ export const renderSidebarContent = async () => {
     files.forEach(file => sidebarContent.appendChild(createSidebarItem(file)));
 };
 
-const createSideBarItem = (item) => {
+const createSidebarItem = (item) => {
     if (item.type === "folder") return createFolderElement(item);
     if (item.type === "file") return createFileElement(item);
 };
@@ -30,10 +31,10 @@ const createFolderElement = (folder) => {
     const childrenContainer = createElement("div", { class: "folder-children-container" });
 
     folder.children.forEach(child => {
-        childrenContainer.appendChild(createSideBarItem(child));
+        childrenContainer.appendChild(createSidebarItem(child));
     });
 
-    header.addEventListener("click", childrenContainer.classList.toggle("open"));
+    header.addEventListener("click", () => childrenContainer.classList.toggle("open"));
 
     folderElement.appendChild(header);
     folderElement.appendChild(childrenContainer);
@@ -51,7 +52,7 @@ const createFileElement = (file) => {
         ]
     );
 
-    fileElement.addEventListener("click", () => openFile(file)); // openFile function needed
+    fileElement.addEventListener("click", () => openTab(file));
 
     return fileElement;
 };

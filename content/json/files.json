@@ -7,6 +7,13 @@
         "content": "<h1>Welcome!</h1>"
     },
     {
+        "type": "file",
+        "id": "bla",
+        "title": "bla.md",
+        "icon": "user.svg",
+        "content": "<h1>bla!</h1>"
+    },
+    {
         "type": "folder",
         "title": "Test Folder",
         "icon": "folder.svg",
