@@ -8,6 +8,7 @@ html, body {
   font-family: var(--font-family-ui);
   font-size: var(--font-size);
   color: var(--text-color);
+  height: 100%;
 }
 
 #container {
@@ -16,6 +17,7 @@ html, body {
   display: flex;
   flex-direction: column;
   background-color: var(--main-bg);
+  overflow: hidden;
 }
 
 /* title bar */
@@ -47,9 +49,8 @@ html, body {
   position: absolute;
   top: 0;
   right: 0;
-  user-select: none;
-  pointer-events: none;
   background: linear-gradient(to right, transparent, var(--title-bar-bg));
+  pointer-events: none;
 }
 
 .title-bar .wrapper.right {
@@ -58,7 +59,7 @@ html, body {
 
 .title-bar .wrapper.right button {
   height: 100%;
-  border-radius: 0px;
+  border-radius: 0;
   aspect-ratio: 1.3/1;
 }
 
@@ -70,7 +71,7 @@ html, body {
   background-color: var(--title-bar-hover-color);
 }
 
-/* view */
+/* main view */
 #view {
   display: flex;
   width: 100%;
@@ -106,22 +107,20 @@ html, body {
   transition: filter 0.3s ease;
 }
 
-#sidebar button:not(.active, :hover) img.icon {
+#sidebar button:not(.active):not(:hover) img.icon {
   filter: brightness(0.5);
 }
 
 #sidebar-content {
-  height: 100%;
   width: 200px;
   background-color: var(--sidebar-content-bg);
-  overflow: hidden;
+  overflow-y: auto; /* scroll when content exceeds height */
   transition: width 0.3s ease;
 }
 
 /* content container */
 #content-container {
-  width: 100%;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -154,7 +153,6 @@ html, body {
 
 .tab.hidden {
   transform: scaleX(0);
-  user-select: none;
   pointer-events: none;
 }
 
@@ -162,10 +160,9 @@ html, body {
   background-color: var(--tab-hover-bg);
 }
 
-/* tab content container */
+/* tab content */
 #tab-content-container {
-  width: 100%;
-  height: 100%;
+  flex: 1;
   padding: var(--padding);
   position: relative;
   background-color: var(--main-bg);
@@ -176,15 +173,21 @@ html, body {
   -webkit-mask: url(./../content/icons/vscode.svg) center/25% no-repeat;
 }
 
+/* files & folders */
 .file,
 .folder-header {
   display: flex;
   align-items: center;
   padding: var(--padding);
-  transition: background-color 0.3s ease;
   padding-left: calc(2 * var(--padding));
   cursor: pointer;
   white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.file.active,
+.folder-header.active {
+  background-color: var(--sidebar-active-color);
 }
 
 .folder {
@@ -203,14 +206,13 @@ html, body {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(0deg);
   transition: transform 0.3s ease;
 }
 
-.folder:has(.folder-children-container.open) .folder-header::before {
+.folder-header[data-open="true"]::before {
   transform: translateY(-50%) rotate(90deg);
 }
-
 
 .file:hover,
 .folder-header:hover {
@@ -218,34 +220,37 @@ html, body {
 }
 
 .folder-children-container {
-  padding-left: calc(2 * var(--padding));
-  height: 0px;
   overflow: hidden;
-  position: relative;
+  max-height: 0;
   transition: max-height 0.3s ease;
+  padding-left: 1em;
+  position: relative;
+}
+
+.folder-children-container.open {
+  max-height: 1000px;
 }
 
 .folder-children-container::before {
   content: "";
-  width: 2px;
+  width: 1px;
   height: 0%;
   position: absolute;
   top: 0;
   left: var(--padding);
   background-color: var(--text-color);
-  border-radius: 0px 0px 1px 1px;
+  border-radius: 1px;
   filter: brightness(0.5);
-  transition: height 0.3s ease;
+  transition: height 0.3s ease, filter 0.3s ease;
+}
+
+.folder:hover .folder-children-container::before {
+  filter: brightness(0.75);
 }
 
 .folder-children-container.open::before {
   height: 100%;
 }
-
-.folder-children-container.open {
-  height: fit-content;
-}
-
 
 /* footer */
 footer {
@@ -260,8 +265,7 @@ footer button:hover {
   background-color: var(--footer-hover-color);
 }
 
-/* non-specific */
-/* button */
+/* buttons & icons */
 button {
   padding: 0.25em 0.5em;
   cursor: pointer;
@@ -279,7 +283,6 @@ button.close:hover {
   background-color: #E81023;
 }
 
-/* icons */
 .icon {
   width: 1.25em;
   height: 1.25em;
@@ -295,7 +298,7 @@ button .icon {
   margin: 0;
 }
 
-/* wrapper */
+/* wrappers */
 .wrapper {
   display: flex;
   align-items: center;

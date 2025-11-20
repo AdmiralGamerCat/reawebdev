@@ -11,6 +11,7 @@ import {
 
 const tabsContainer = document.querySelector("#tabs-container");
 const tabContentContainer = document.querySelector("#tab-content-container");
+const sidebarContent = document.querySelector("#sidebar-content");
 
 const createTabElement = (file) => {
     const tabElement = createElement(
@@ -41,20 +42,27 @@ const createTabElement = (file) => {
 const switchTab = async (tabId) => {
     setActiveTabId(tabId);
 
-    [...tabsContainer.children].forEach(tab => {
+    tabsContainer.querySelectorAll(".tab").forEach(tab => {
         tab.classList.toggle("active", tab.dataset.tabId === tabId);
+    });
+
+    sidebarContent.querySelectorAll(".file").forEach(file => {
+        file.classList.toggle("active", file.dataset.fileId === tabId);
     });
 
     const file = await fetchFile(tabId);
     if (!file) return;
 
-    tabContentContainer.innerHTML = file.content || "<p>No content available.</p>";
+    const response = await fetch(`./content/file-content/${file.content}`);
+    const fileContent = await response.text();
+
+    tabContentContainer.innerHTML = fileContent || "<p>No content available.</p>";
+    tabContentContainer.dataset.styleId = tabId;
 };
 
 export const openTab = async (file, options = {}) => {
     const { restore = false, force = false } = options;
 
-    const tabsContainer = document.querySelector("#tabs-container");
     const existsInState = getOpenTabs().find(tab => tab.id === file.id);
     const existsInDOM = tabsContainer.querySelector(`[data-tab-id="${file.id}"]`);
 
@@ -88,20 +96,15 @@ const closeTab = (file) => {
     const openTabs = getOpenTabs();
     const activeTabId = getActiveTabId();
 
-    // If closing the active tab
     if (activeTabId === file.id) {
-
-        // If other tabs exist: switch to the last one
         if (openTabs.length > 0) {
             const lastTab = openTabs[openTabs.length - 1];
             switchTab(lastTab.id);
         } 
-        // If no tabs left: clear content
         else {
             setActiveTabId(null);
+            sidebarContent.querySelectorAll(".file").forEach(file => file.classList.remove("active"));
             tabContentContainer.innerHTML = "";
-        }
-
-    }
-    // If closing a non-active tab: do nothing.
+        };
+    };
 };

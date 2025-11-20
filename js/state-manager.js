@@ -3,8 +3,9 @@
 const STORAGE_KEY = "portfolio-state-hidde-aalders";
 
 let state = {
-    openTabs: [],
-    activeTabId: null
+    openTabs: [{ "id": "welcome" }], // default state
+    activeTabId: null,
+    sidebarFolders: {} // store folder states
 };
 
 const savedState = localStorage.getItem(STORAGE_KEY);
@@ -36,4 +37,14 @@ export const removeOpenTab = (id) => {
 export const setActiveTabId = (id) => {
     state.activeTabId = id;
     saveState();
+};
+
+// sidebar
+export const setFolderState = (folderId, isOpen) => {
+    state.sidebarFolders[folderId] = isOpen;
+    saveState();
+};
+
+export const getFolderState = (folderId) => {
+    return !!state.sidebarFolders[folderId];
 };

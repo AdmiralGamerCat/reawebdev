@@ -4,7 +4,7 @@
         "id": "welcome",
         "title": "Welcome.md",
         "icon": "markdown.svg",
-        "content": "<h1>Welcome!</h1>"
+        "content": "welcome.html"
     },
     {
         "type": "file",
@@ -15,16 +15,47 @@
     },
     {
         "type": "folder",
-        "title": "Test Folder",
+        "id": "projects",
+        "title": "Projects",
         "icon": "folder.svg",
         "children": [
             {
-                "type": "file",
-                "id": "testFile",
-                "title": "Test File",
-                "icon": "error-circle.svg",
-                "content": "<h1>Test File</h1>"
+                "type": "folder",
+                "id": "project-1",
+                "title": "Project 1",
+                "icon": "folder.svg",
+                "children": [
+                    {
+                        "type": "file",
+                        "id": "testFile",
+                        "title": "Test File",
+                        "icon": "error-circle.svg",
+                        "content": "<h1>Test File</h1>"
+                    }
+                ]
+            },
+            {
+                "type": "folder",
+                "id": "project-2",
+                "title": "Project 2",
+                "icon": "folder.svg",
+                "children": [
+                    {
+                        "type": "file",
+                        "id": "testFile2",
+                        "title": "Test 2File",
+                        "icon": "double-check.svg",
+                        "content": "<h1>Test File</h1>"
+                    }
+                ]
             }
         ]
+    },
+    {
+        "type": "file",
+        "id": "settings",
+        "title": "Settings.json",
+        "icon": "cog.svg",
+        "content": "settings.html"
     }
 ]
