@@ -2,8 +2,8 @@
     {
         "type": "file",
         "id": "welcome",
-        "title": "Welcome.md",
-        "icon": "markdown.svg",
+        "title": "Welcome",
+        "icon": "vscode.svg",
         "content": "welcome.html"
     },
     {
@@ -31,6 +31,21 @@
                         "title": "Test File",
                         "icon": "error-circle.svg",
                         "content": "<h1>Test File</h1>"
+                    },
+                    {
+                        "type": "folder",
+                        "id": "third-indent",
+                        "title": "third-indent",
+                        "icon": "folder.svg",
+                        "children": [
+                            {
+                                "type": "file",
+                                "id": "final-file",
+                                "title": "final-file",
+                                "icon": "double-check.svg",
+                                "content": ""
+                            }
+                        ]
                     }
                 ]
             },

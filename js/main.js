@@ -26,5 +26,7 @@ async function restoreTabs() {
     };
 };
 
-renderSidebarContent();
-restoreTabs();
+document.addEventListener("DOMContentLoaded", async () => {
+    renderSidebarContent();
+    restoreTabs();
+});
