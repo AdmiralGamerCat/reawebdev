@@ -7,15 +7,37 @@
         "content": "welcome.html"
     },
     {
-        "type": "file",
-        "id": "bla",
-        "title": "bla.md",
-        "icon": "user.svg",
-        "content": "<h1>bla!</h1>"
+        "type": "folder",
+        "id": "about-me-folder",
+        "title": "About Me",
+        "icon": "folder.svg",
+        "children": [
+            {
+                "type": "file",
+                "id": "personal-profile",
+                "title": "Personal Profile",
+                "icon": "user.svg",
+                "content": "personal-profile.html"
+            },
+            {
+                "type": "file",
+                "id": "learning-path",
+                "title": "Learning Path",
+                "icon": "user.svg",
+                "content": "learning-path.html"
+            },
+            {
+                "type": "file",
+                "id": "work-experience",
+                "title": "Work Experience",
+                "icon": "user.svg",
+                "content": "work-experience.html"
+            }
+        ]
     },
     {
         "type": "folder",
-        "id": "projects",
+        "id": "projects-folder",
         "title": "Projects",
         "icon": "folder.svg",
         "children": [
@@ -24,53 +46,29 @@
                 "id": "project-1",
                 "title": "Project 1",
                 "icon": "folder.svg",
-                "children": [
-                    {
-                        "type": "file",
-                        "id": "testFile",
-                        "title": "Test File",
-                        "icon": "error-circle.svg",
-                        "content": "<h1>Test File</h1>"
-                    },
-                    {
-                        "type": "folder",
-                        "id": "third-indent",
-                        "title": "third-indent",
-                        "icon": "folder.svg",
-                        "children": [
-                            {
-                                "type": "file",
-                                "id": "final-file",
-                                "title": "final-file",
-                                "icon": "double-check.svg",
-                                "content": ""
-                            }
-                        ]
-                    }
-                ]
+                "children": []
             },
             {
                 "type": "folder",
                 "id": "project-2",
                 "title": "Project 2",
                 "icon": "folder.svg",
-                "children": [
-                    {
-                        "type": "file",
-                        "id": "testFile2",
-                        "title": "Test 2File",
-                        "icon": "double-check.svg",
-                        "content": "<h1>Test File</h1>"
-                    }
-                ]
+                "children": []
+            },
+            {
+                "type": "folder",
+                "id": "project-3",
+                "title": "Project 3",
+                "icon": "folder.svg",
+                "children": []
             }
         ]
     },
     {
-        "type": "file",
-        "id": "settings",
-        "title": "Settings.json",
-        "icon": "cog.svg",
-        "content": "settings.html"
+        "type": "folder",
+        "id": "resources-folder",
+        "title": "Resources",
+        "icon": "folder.svg",
+        "children": []
     }
 ]
