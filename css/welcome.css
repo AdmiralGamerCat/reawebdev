@@ -3,3 +3,12 @@
     align-items: center;
     justify-content: center;
 }
+
+[data-style-id="welcome"] .column-left,
+[data-style-id="welcome"] .column-right {
+    width: 50%;
+}
+
+[data-style-id="welcome"] .column-right {
+    align-items: end;
+}
