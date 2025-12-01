@@ -111,42 +111,28 @@ const createFileElement = (file) => {
 };
 
 export const expandFilePath = (fileId) => {
-  // Find the DOM element in sidebar for the file
-  const fileEl = document.querySelector(`#sidebar-content .file[data-file-id="${fileId}"]`);
-  if (fileEl) {
-    // Ensure it's visible: walk up to any folder-children-container parents
-    let parent = fileEl.parentElement;
-    while (parent && parent.id !== 'sidebar-content') {
-      if (parent.classList.contains('folder-children-container')) {
-        // mark its header open
-        parent.classList.add('open');
-        const header = parent.previousElementSibling; // folder-header
-        if (header) header.setAttribute('data-open', 'true');
+    const fileElement = document.querySelector(`#sidebar-content .file[data-file-id="${fileId}"]`);
+    if (fileElement) {
+        let parent = fileElement.parentElement;
 
-        // clear maxHeight to let CSS compute natural height
-        parent.style.maxHeight = '';
-        // ensure state persistence
-        const folderEl = header && header.closest('.folder');
-        if (folderEl) {
-          const folderId = folderEl.querySelector('.folder-header')?.dataset?.folderId || folderEl.dataset.folderId;
-          // if you store folderId on header, set it; otherwise find another way
-          if (folderId) setFolderState(folderId, true);
-        }
-      }
-      parent = parent.parentElement;
-    }
+        while (parent && parent.id !== "sidebar-content") {
+            if (parent.classList.contains("folder-children-container")) {
+                parent.classList.add("open");
+                const header = parent.previousElementSibling;
+                if (header) header.setAttribute("data-open", true);
 
-    // also mark the file active visually
-    document.querySelectorAll('#sidebar-content .file').forEach(f => f.classList.toggle('active', f.dataset.fileId === fileId));
-  } else {
-    // If the file isn't in the sidebar (maybe nested deeper), you may render it or log
-    console.warn('Sidebar file element not found for', fileId);
-  }
+                parent.style.maxHeight = "";
+
+                const folderElement = parent.previousElementSibling;
+                if (folderElement) {
+                    const folderId = header.dataset.folderId;
+                    setFolderState(folderId, true);
+                };
+            };
+
+            parent = parent.parentElement;
+        };
+
+        sidebarContent.querySelectorAll(".file").forEach(file => file.classList.toggle("active", file.dataset.fileId === fileId));
+    };
 };
-
-// const expandFilePath = (fileId) => {
-//     const fileElement = document.querySelector(`#sidebar-content .file[data-file-id="${fileId}"]`);
-//     if (fileElement) {
-
-//     }
-// }

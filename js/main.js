@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     restoreTabs();
 });
 
+// internal file links
 document.addEventListener("click", async (event) => {
     const element = event.target.closest("[data-file-link]");
     if (!element) return;
@@ -45,4 +46,23 @@ document.addEventListener("click", async (event) => {
 
     await openTab(file);
     expandFilePath(fileId);
+});
+
+document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href^='http']");
+
+    if (!link) return;
+
+    const currentHost = window.location.host;
+    const linkHost = new URL(link.href).host;
+
+    if (linkHost !== currentHost) {
+        event.preventDefault();
+
+        const confirmed = window.confirm(`You're about to leave this website and go to:\n${link.href}\nContinue?`);
+
+        if (confirmed) {
+            window.open(link.href, "_blank");
+        }
+    }
 })

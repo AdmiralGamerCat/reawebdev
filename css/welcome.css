@@ -1,12 +1,5 @@
-[data-style-id="welcome"] {
-    * {
-        color: red;
-    }
-    
-    img {
-        max-width: 25vw;
-        height: auto;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-    }
+#tab-content-container[data-style-id="welcome"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

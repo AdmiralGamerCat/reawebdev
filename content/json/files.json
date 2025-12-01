@@ -42,6 +42,13 @@
         "icon": "folder.svg",
         "children": [
             {
+                "type": "file",
+                "id": "projects-info",
+                "title": "projects-info.md",
+                "icon": "markdown.svg",
+                "content": "projects-info.html"
+            },
+            {
                 "type": "folder",
                 "id": "project-1",
                 "title": "Project 1",
@@ -69,6 +76,35 @@
         "id": "resources-folder",
         "title": "Resources",
         "icon": "folder.svg",
-        "children": []
+        "children": [
+            {
+                "type": "file",
+                "id": "cv",
+                "title": "cv.pdf",
+                "icon": "acrobat-reader.svg",
+                "content": "cv.html"
+            }
+        ]
+    },
+    {
+        "type": "file",
+        "id": "javascript",
+        "title": "test file",
+        "icon": "js-file.svg",
+        "content": ""
+    },
+    {
+        "type": "file",
+        "id": "json",
+        "title": "test file",
+        "icon": "json-file.svg",
+        "content": ""
+    },
+    {
+        "type": "file",
+        "id": "html",
+        "title": "test file",
+        "icon": "html-file.svg",
+        "content": ""
     }
 ]

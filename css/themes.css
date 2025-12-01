@@ -6,6 +6,7 @@
     --font-size: 14px;
     --text-color: #CCCCCC;
     --font-family-ui: "Inter", sans-serif;
+    --link-text-color: #74A9F5;
 }
 
 [data-theme="dark"] {
