@@ -1,0 +1,52 @@
+/* tops */
+.tops {
+    padding: 1em 0;
+}
+
+/* center */
+.center {
+    padding: 2em 0;
+}
+
+.center > .wrapper {
+    width: 100%;
+    justify-content: end;
+}
+
+/* nav */
+nav.desktop {
+    background-color: var(--primary-color);
+    padding: 1em 0;
+    max-height: 60px;
+}
+
+nav.desktop .wrapper {
+    gap: 0;
+}
+
+nav.desktop .wrapper a {
+    padding: 0.75em 1em;
+}
+
+nav.desktop > a:last-child {
+    padding-right: 0;
+}
+
+nav.desktop .dropdown-btn {
+    color: var(--nav-text-color);
+    padding: 0.25em 0;
+}
+
+
+/* disable mobile styles */
+nav.mobile {
+    display: none;
+}
+
+nav.mobile-bottom-bar {
+    display: none;
+}
+
+#mobile-dropdown-toggle {
+    display: none;
+}

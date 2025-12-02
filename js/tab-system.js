@@ -28,7 +28,13 @@ const createTabElement = (file) => {
         ]
     );
 
-    tabElement.addEventListener("click", () => switchTab(file.id));
+    tabElement.addEventListener("click", () => {
+        if (getActiveTabId() === file.id) {
+            return;
+        } else {
+            switchTab(file.id);
+        }
+    });
     
     tabElement.querySelector(".close-button").addEventListener("click", (event) => {
         event.stopPropagation();
@@ -56,8 +62,13 @@ const switchTab = async (tabId) => {
     const response = await fetch(`./content/file-content/${file.content}`);
     const fileContent = await response.text();
 
-    tabContentContainer.innerHTML = fileContent || "<p>No content available.</p>";
-    tabContentContainer.dataset.styleId = tabId;
+    tabContentContainer.classList.add("switching");
+
+    setTimeout(() => {
+        tabContentContainer.innerHTML = fileContent || "<p>No content available.</p>";
+        tabContentContainer.dataset.styleId = tabId;
+        tabContentContainer.classList.remove("switching");
+    }, 150);
 };
 
 export const openTab = async (file, options = {}) => {

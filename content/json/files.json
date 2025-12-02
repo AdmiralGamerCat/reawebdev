@@ -50,10 +50,25 @@
             },
             {
                 "type": "folder",
-                "id": "project-1",
-                "title": "Project 1",
+                "id": "project-uomo",
+                "title": "Uomo webshop",
                 "icon": "folder.svg",
-                "children": []
+                "children": [
+                    {
+                        "type": "file",
+                        "id": "project-uomo-readme",
+                        "title": "readMe.md",
+                        "icon": "markdown.svg",
+                        "content": "project-uomo-readme.html"
+                    },
+                    {
+                        "type": "file",
+                        "id": "project-uomo-preview",
+                        "title": "Uomo.html",
+                        "icon": "html-file.svg",
+                        "content": "project-uomo.html"
+                    }
+                ]
             },
             {
                 "type": "folder",
@@ -85,26 +100,5 @@
                 "content": "cv.html"
             }
         ]
-    },
-    {
-        "type": "file",
-        "id": "javascript",
-        "title": "test file",
-        "icon": "js-file.svg",
-        "content": ""
-    },
-    {
-        "type": "file",
-        "id": "json",
-        "title": "test file",
-        "icon": "json-file.svg",
-        "content": ""
-    },
-    {
-        "type": "file",
-        "id": "html",
-        "title": "test file",
-        "icon": "html-file.svg",
-        "content": ""
     }
 ]

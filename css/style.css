@@ -114,7 +114,7 @@ html, body {
 #sidebar-content {
   width: 200px;
   background-color: var(--sidebar-content-bg);
-  overflow-y: auto; /* scroll when content exceeds height */
+  overflow-y: auto;
   transition: width 0.3s ease;
 }
 
@@ -128,11 +128,28 @@ html, body {
 
 #tabs-container {
   display: flex;
-  max-width: 100%;
+  width: 100%;
   gap: 1px;
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
   background-color: var(--tabs-container-bg);
 }
+
+#tabs-container::-webkit-scrollbar {
+  height: 6px;
+}
+#tabs-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+#tabs-container::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.25);
+  border-radius: 3px;
+}
+#tabs-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.4);
+}
+
 
 #tabs-container button:not(.tab) {
   border-radius: var(--border-radius);
@@ -145,6 +162,7 @@ html, body {
 .tab {
   background-color: var(--tab-bg);
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   transform-origin: center left;
   overflow: hidden;
@@ -165,6 +183,25 @@ html, body {
   flex: 1;
   position: relative;
   background-color: var(--main-bg);
+}
+
+#tab-content-container::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  user-select: none;
+  pointer-events: none;
+  background-color: var(--main-bg);
+  opacity: 0;
+  z-index: 10;
+  transition: opacity 150ms ease;
+}
+
+#tab-content-container.switching::after {
+  opacity: 1;
 }
 
 #tab-content-container:has(:not(iframe.content-viewer)) {
@@ -270,7 +307,8 @@ footer button:hover {
 }
 
 /* buttons & icons */
-button {
+button,
+.button {
   padding: 0.25em 0.5em;
   cursor: pointer;
   border: none;
@@ -283,7 +321,8 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button.close:hover {
+button.close:hover,
+.button.close:hover {
   background-color: #E81023;
 }
 
@@ -328,6 +367,18 @@ iframe.content-viewer {
 }
 
 /* typography */
+h1 {
+  font-weight: 400;
+}
+
+h2 {
+  font-weight: 200;
+}
+
+h3 {
+  font-weight: 400;
+}
+
 a {
   color: #74A9F5;
 }

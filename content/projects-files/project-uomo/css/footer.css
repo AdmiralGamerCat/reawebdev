@@ -1,0 +1,42 @@
+footer {
+    margin-top: 100px;
+    background-color: var(--primary-color);
+    /* height: 200px; */
+}
+
+footer * {
+    color: var(--nav-text-color);
+}
+
+footer .inner {
+    margin: 100px 0;
+    align-items: stretch;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+footer .inner > .wrapper {
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+footer .inner > .wrapper h3 {
+    margin-bottom: 2em;
+}
+
+footer .inner > .wrapper > img {
+    margin-bottom: 4em;
+}
+
+footer > p {
+    background-color: #142965;
+    text-align: center;
+    padding: 1em 0;
+}
+
+@media screen and (max-width: 768px) {
+    footer > p {
+        padding: 1em 0 5em 0;
+    }
+}

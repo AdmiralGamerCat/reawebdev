@@ -1,0 +1,18 @@
+:root {
+    /* main colors */
+    --primary-color: #193174;
+    --secondary-color: #ebb73f;
+    --third-color: #e4f5f2;
+
+    /* text colors */
+    --nav-text-color: white;
+    --secondary-text-color: #767676;
+    --border-color: #e4e4e4;
+    
+    /* ad background colors */
+    --ad-bg-color-1: #f6f2ff;
+    --ad-bg-color-2: #e4f5f2;
+    --ad-bg-color-3: #f2ebe1;
+    --ad-bg-color-4: #a0f1fc;
+    --ad-bg-color-5: #e1f2e3;
+}
