@@ -51,7 +51,7 @@
             {
                 "type": "folder",
                 "id": "project-uomo",
-                "title": "Uomo webshop",
+                "title": "Uomo Webshop",
                 "icon": "folder.svg",
                 "children": [
                     {
@@ -72,17 +72,18 @@
             },
             {
                 "type": "folder",
-                "id": "project-2",
-                "title": "Project 2",
+                "id": "project-users-cms",
+                "title": "Users CMS",
                 "icon": "folder.svg",
-                "children": []
-            },
-            {
-                "type": "folder",
-                "id": "project-3",
-                "title": "Project 3",
-                "icon": "folder.svg",
-                "children": []
+                "children": [
+                    {
+                        "type": "file",
+                        "id": "project-users-cms-preview",
+                        "title": "Preview.html",
+                        "icon": "html-file.svg",
+                        "content": "project-users-cms.html"
+                    }
+                ]
             }
         ]
     },

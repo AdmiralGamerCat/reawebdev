@@ -81,25 +81,16 @@ html, body {
 /* sidebar */
 #sidebar {
   background-color: var(--sidebar-bg);
-  width: fit-content;
+  width: 48px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: width 0.3s ease;
 }
 
 #sidebar button {
   position: relative;
-}
-
-#sidebar button.active::after {
-  content: "";
-  width: 2px;
-  height: 100%;
-  background-color: var(--text-color);
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 #sidebar button img.icon {
@@ -111,11 +102,59 @@ html, body {
   filter: brightness(0.5);
 }
 
+/* explorer-toggle */
+#explorer-toggle {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  appearance: none;
+  aspect-ratio: 1/1;
+}
+
+#explorer-toggle::before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: var(--text-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s ease;
+}
+
+#explorer-toggle::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(./../content/icons/files.svg);
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center center;
+  transition: filter 0.3s ease;
+}
+
+#explorer-toggle:checked::before {
+  opacity: 0;
+}
+
+#explorer-toggle:checked::after {
+  filter: brightness(0.5);
+}
+
 #sidebar-content {
   width: 200px;
+  flex-shrink: 0;
   background-color: var(--sidebar-content-bg);
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow: hidden auto;
   transition: width 0.3s ease;
+}
+
+#sidebar:has(#explorer-toggle:checked) ~ #sidebar-content {
+  width: 0px;
 }
 
 /* content container */
@@ -195,9 +234,10 @@ html, body {
   user-select: none;
   pointer-events: none;
   background-color: var(--main-bg);
+  backdrop-filter: blur(10px);
   opacity: 0;
   z-index: 10;
-  transition: opacity 150ms ease;
+  transition: opacity 150ms ease, backdrop-filter 150ms ease;
 }
 
 #tab-content-container.switching::after {

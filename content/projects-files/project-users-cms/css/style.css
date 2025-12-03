@@ -1,0 +1,338 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f1f1f;
+}
+
+h1,
+h2 {
+    color: #CCCCCC;
+}
+
+#container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+/* popup */
+.popup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    backdrop-filter: blur(3px);
+    transition: opacity 0.3s ease;
+}
+
+.popup-container.hidden {
+    opacity: 0;
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 8px;
+    background: linear-gradient(to bottom right, white, rgb(212, 212, 212));
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    min-width: 360px;
+    aspect-ratio: 1/1.3;
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.popup.hidden {
+    opacity: 0;
+    transform: translateY(20%) scaleX(0.8);
+}
+
+.popup:hover {
+    box-shadow:0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* wrappers */
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.wrapper.row {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wrapper.column {
+    flex-direction: column;
+}
+
+/* form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+}
+
+form::after {
+    content: "";
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, #F8F8F8, #DADBDB);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+form.hidden::after {
+    opacity: 1;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: margin-top 0.3s ease;
+}
+
+.input-wrapper:has(.error-message) .error-message {
+    opacity: 1;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.input-wrapper:has(select) {
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+
+.input-wrapper:has(input[type="text"]:focus),
+.input-wrapper:has(input[type="text"]:not(:placeholder-shown)) {
+    margin-top: 1em;
+}
+
+/* input */
+select {
+    width: fit-content;
+    border: 2px solid gray;
+    border-radius: 8px;
+    padding: 0.25em;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+select:hover {
+    background-color: rgb(255, 238, 207);
+    border: 2px solid #1f1f1f;
+}
+
+select:focus {
+    border: 2px solid orange;
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 2px solid gray;
+    padding: 0.5em;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+[type="text"]:not(:placeholder-shown, :focus).valid {
+    background-color: rgb(207, 255, 214);
+}
+
+input.invalid {
+    background-color: rgb(255, 207, 207);
+}
+
+
+input[type="text"]:hover {
+    border-bottom: 2px solid #1f1f1f;
+    background-color: rgb(255, 238, 207);
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: 2px solid orange;
+}
+
+.input-wrapper:has(input[type="text"]) label {
+    position: absolute;
+    top: 0.45em;
+    left: 0.35em;
+    user-select: none;
+    cursor: text;
+    transition: top 0.3s ease, font-size 0.3s ease;
+}
+
+.input-wrapper:has(input[type="text"]:focus) label,
+.input-wrapper:has(input[type="text"]:not(:placeholder-shown)) label {
+    top: -1.35em;
+    font-size: 0.9em;
+    cursor: default;
+}
+
+/* button */
+button {
+    width: fit-content;
+    cursor: pointer;
+    color: white;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: none;
+    padding: 0.75em;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: scale 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+button i {
+    transition: rotate 0.3s ease;
+}
+
+button.rotate:hover i,
+button.rotate:disabled i {
+    rotate: 90deg;
+}
+
+button:not(:disabled):hover {
+    scale: 1.05;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:not(:disabled):active {
+    scale: 0.95;
+    box-shadow: none;
+}
+
+button:disabled,
+button.red:disabled,
+button.green:disabled,
+button.blue:disabled {
+    scale: 0.95;
+    cursor: not-allowed;
+    box-shadow: none;
+    background: linear-gradient(to bottom right, rgb(148, 147, 147), rgb(108, 108, 108));
+}
+
+/* button colors */
+button.red {
+    background: linear-gradient(to bottom right, rgb(225, 66, 66), rgb(163, 9, 40));
+}
+
+button.green {
+    background: linear-gradient(to bottom right, rgb(58, 173, 108), seagreen);
+}
+
+button.blue {
+    background: linear-gradient(to bottom right, dodgerblue, rgb(17, 102, 187));
+}
+
+/* table styles */
+table {
+    width: fit-content;
+    border-collapse: separate;
+    border-spacing: 0px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+table:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+thead tr {
+    background: linear-gradient(to bottom right, rgb(255, 173, 19), orange);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+thead tr th:first-of-type {
+    border-radius: 8px 0px 0px 0px;
+}
+
+thead tr th:last-of-type {
+    border-radius: 0px 8px 0px 0px;
+}
+
+thead th {
+    padding: 0.75em 1em;
+    text-align: left;
+    font-weight: bold;
+}
+
+tbody tr td {
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:nth-child(even) td {
+    background-color: #f1f1f1;
+}
+
+tbody tr:hover td {
+    background-color: #ffe4b5;
+}
+
+tbody tr:last-child td:first-of-type {
+    border-radius: 0px 0px 0px 8px;
+}
+
+tbody tr:last-child td:last-of-type {
+    border-radius: 0px 0px 8px 0px;
+}
+
+tbody td {
+    padding: 0.75em 1em;
+}
+
+/* user row */
+.user-row {
+    position: relative;
+}
+
+.edit-delete-wrapper {
+    position: absolute;
+    top: 50%;
+    padding: 2em;
+    padding-left: 0.5em;
+    gap: 0.5em;
+    transform: translate(0%, -50%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.edit-delete-wrapper.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}

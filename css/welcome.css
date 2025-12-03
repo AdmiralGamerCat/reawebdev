@@ -1,5 +1,6 @@
 #tab-content-container[data-style-id="welcome"] {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -19,5 +20,15 @@
 
 [data-style-id="welcome"] .column-right {
     align-items: end;
-    /* width: fit-content; */
+}
+
+@media (max-width: 960px) {
+    [data-style-id="welcome"] .welcome-wrapper {
+        flex-direction: column;
+        gap: 5em;
+    }
+
+    [data-style-id="welcome"] .column-right {
+        align-items: center;
+    }
 }

@@ -59,7 +59,7 @@ const switchTab = async (tabId) => {
     const file = await fetchFile(tabId);
     if (!file) return;
 
-    const response = await fetch(`./content/file-content/${file.content}`);
+    const response = await fetch(`./content/file-content/${file.content}?v=${Date.now()}`);
     const fileContent = await response.text();
 
     tabContentContainer.classList.add("switching");
@@ -67,7 +67,16 @@ const switchTab = async (tabId) => {
     setTimeout(() => {
         tabContentContainer.innerHTML = fileContent || "<p>No content available.</p>";
         tabContentContainer.dataset.styleId = tabId;
-        tabContentContainer.classList.remove("switching");
+
+        const iframe = tabContentContainer.querySelector("iframe.content-viewer");
+
+        if (iframe) {
+            iframe.addEventListener("load", () => {
+                tabContentContainer.classList.remove("switching");
+            })
+        } else {
+            tabContentContainer.classList.remove("switching");
+        }
     }, 150);
 };
 
