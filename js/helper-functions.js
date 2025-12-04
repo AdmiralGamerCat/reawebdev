@@ -47,3 +47,7 @@ export const fetchFile = async (fileId) => {
 
     return file;
 };
+
+export const isMobile = () => {
+    return window.matchMedia("(max-width: 960px)").matches;
+}

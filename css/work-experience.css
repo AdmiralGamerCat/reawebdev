@@ -1,15 +1,24 @@
-/* #tab-content-container[data-style-id="work-experience"] {
+[data-style-id="work-experience"] #work-experience-container {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 
-#tab-content-container[data-style-id="work-experience"]::after {
+[data-style-id="work-experience"] #work-experience-container::before {
     content: "";
-    width: 1em;
+    width: 0.5em;
     height: 100%;
-    background-color: aliceblue;
     position: absolute;
     top: 0;
     left: 50%;
-} */
+    transform: translateX(-0.25em);
+    background: linear-gradient(to bottom,
+    transparent 0%, var(--text-color) 1%,
+    transparent 1%, transparent 2%,
+    var(--text-color) 2%, var(--text-color) 3%,
+    transparent 3%, transparent 4%,
+    var(--text-color) 4%, var(--text-color) 96%,
+    transparent 96%, transparent 97%,
+    var(--text-color) 97%, var(--text-color) 98%,
+    transparent 98%, transparent 99%,
+    var(--text-color) 99%, transparent 100%
+    );
+}

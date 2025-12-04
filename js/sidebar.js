@@ -1,10 +1,11 @@
 "use strict";
 
-import { createElement, fetchFiles } from "./helper-functions.js";
+import { createElement, fetchFiles, isMobile } from "./helper-functions.js";
 import { openTab } from "./tab-system.js";
-import { getFolderState, setFolderState } from "./state-manager.js";
+import { getActiveTabId, getFolderState, setFolderState } from "./state-manager.js";
 
 const sidebarContent = document.querySelector("#sidebar-content");
+const explorerToggle = document.querySelector("#explorer-toggle");
 
 export const renderSidebarContent = async () => {
     const files = await fetchFiles();
@@ -32,27 +33,27 @@ const createFolderElement = (folder) => {
     const childrenContainer = createElement("div", { class: "folder-children-container" });
     folder.children.forEach(child => childrenContainer.appendChild(createSidebarItem(child)));
 
-    // --- Restore folder state without animation ---
     const isOpen = getFolderState(folder.id);
     if (isOpen) {
         childrenContainer.classList.add("open");
         header.setAttribute("data-open", "true");
         childrenContainer.style.maxHeight = childrenContainer.scrollHeight + "px";
-        // Remove max-height after a tick to prevent transition issues
+
         setTimeout(() => {
             childrenContainer.style.maxHeight = "";
         });
     }
 
     header.addEventListener("click", () => {
+        explorerToggle.checked = false;
         const isCurrentlyOpen = childrenContainer.classList.contains("open");
         header.setAttribute("data-open", !isCurrentlyOpen);
         const height = childrenContainer.scrollHeight;
 
         if (isCurrentlyOpen) {
-            // CLOSE
-            childrenContainer.style.maxHeight = height + "px"; // current height
-            childrenContainer.offsetHeight; // force reflow
+            // close
+            childrenContainer.style.maxHeight = height + "px";
+            childrenContainer.offsetHeight;
             childrenContainer.style.transition = "max-height 0.3s ease";
             childrenContainer.style.maxHeight = "0";
 
@@ -67,10 +68,10 @@ const createFolderElement = (folder) => {
                 }
             );
         } else {
-            // OPEN
+            // open
             childrenContainer.classList.add("open");
             childrenContainer.style.maxHeight = "0";
-            childrenContainer.offsetHeight; // force reflow
+            childrenContainer.offsetHeight;
             childrenContainer.style.transition = "max-height 0.3s ease";
             childrenContainer.style.maxHeight = height + "px";
 
@@ -85,7 +86,6 @@ const createFolderElement = (folder) => {
             );
         }
 
-        // --- Save folder state ---
         setFolderState(folder.id, !isCurrentlyOpen);
     });
 
@@ -105,7 +105,15 @@ const createFileElement = (file) => {
         ]
     );
 
-    fileElement.addEventListener("click", () => openTab(file));
+    fileElement.addEventListener("click", () => {
+        if (getActiveTabId() === file.id) {
+            return;
+        } else {
+            openTab(file);
+
+            if (isMobile()) explorerToggle.checked = true;
+        };
+    });
 
     return fileElement;
 };
