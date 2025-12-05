@@ -2,6 +2,7 @@
 
 :root {
     --padding: 8px;
+    --padding-big: 2em;
     --border-radius: 8px;
     --font-size: 14px;
     --text-color: #CCCCCC;
@@ -31,6 +32,9 @@
     --footer-bg: #4679C6;
     --footer-hover-color: #5C89CD;
 
-    /* scrollbar */
-    
+    /* code */
+    --code-property: #9CDCFE;
+    --code-number: #B5CEA8;
+    --code-boolean: #569CD6;
+    --code-brace: #D4D4D4;
 }

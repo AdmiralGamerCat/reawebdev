@@ -172,6 +172,7 @@ html, body {
 #tabs-container {
   display: flex;
   width: 100%;
+  height: 33.5px;
   gap: 1px;
   flex-shrink: 0;
   overflow-x: auto;
@@ -412,6 +413,10 @@ button .icon {
   align-items: center;
 }
 
+.wrapper.half-width {
+  width: 50%;
+}
+
 .wrapper.column {
   flex-direction: column;
   align-items: start;
@@ -423,6 +428,10 @@ button .icon {
 
 .wrapper.gap {
   gap: var(--padding);
+}
+
+.wrapper.gap.big {
+  gap: var(--padding-big);
 }
 
 iframe.content-viewer {

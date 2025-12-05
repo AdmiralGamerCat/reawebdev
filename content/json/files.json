@@ -28,10 +28,10 @@
             },
             {
                 "type": "file",
-                "id": "work-experience",
-                "title": "Work Experience",
-                "icon": "user.svg",
-                "content": "work-experience.html"
+                "id": "resume",
+                "title": "resume.pdf",
+                "icon": "acrobat-reader.svg",
+                "content": "resume.html"
             }
         ]
     },
@@ -57,7 +57,7 @@
                     {
                         "type": "file",
                         "id": "project-uomo-readme",
-                        "title": "readMe.md",
+                        "title": "README.md",
                         "icon": "markdown.svg",
                         "content": "project-uomo-readme.html"
                     },
@@ -78,6 +78,13 @@
                 "children": [
                     {
                         "type": "file",
+                        "id": "project-users-cms-readme",
+                        "title": "README.md",
+                        "icon": "markdown.svg",
+                        "content": "project-users-cms-readme.html"
+                    },
+                    {
+                        "type": "file",
                         "id": "project-users-cms-preview",
                         "title": "Preview.html",
                         "icon": "html-file.svg",
@@ -88,18 +95,10 @@
         ]
     },
     {
-        "type": "folder",
-        "id": "resources-folder",
-        "title": "Resources",
-        "icon": "folder.svg",
-        "children": [
-            {
-                "type": "file",
-                "id": "cv",
-                "title": "cv.pdf",
-                "icon": "acrobat-reader.svg",
-                "content": "cv.html"
-            }
-        ]
+        "type": "file",
+        "id": "settings",
+        "title": "settings.json",
+        "icon": "json-file.svg",
+        "content": "settings.html"
     }
 ]

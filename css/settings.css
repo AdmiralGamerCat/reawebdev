@@ -1,0 +1,32 @@
+.code {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 16px;
+  overflow-x: auto;
+  border-radius: 6px;
+  counter-reset: line;
+}
+
+.code code {
+  display: block;
+}
+
+.code code > span {
+  display: block;
+  counter-increment: line;
+}
+
+.code code > span::before {
+  content: counter(line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 1em;
+  text-align: right;
+  color: #666;
+  user-select: none;
+}
+
+.code.json span.string { color: #C0937C; }
+.code.json span.bracket { color: #F3D84B; }
+.code.json span.brace { color: #C777D0 }
+.code.json span.key { color: #B1DBFA }
