@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+/* default variables */
 :root {
     --padding: 8px;
     --padding-big: 2em;
@@ -10,15 +11,18 @@
     --link-text-color: #74A9F5;
 }
 
-[data-theme="dark"] {
+/* Dark+ */
+[data-theme="Dark+"] {
     --main-bg: #1E1E1E;
     --title-bar-bg: #3C3C3C;
     --title-bar-hover-color: #454646;
 
     /* tabs */
     --tab-bg: #2D2D2D;
-    --tab-hover-bg: #1E1E1E;
+    --tab-hover-bg: #2D2D2D;
+    --tab-active-bg: #1E1E1E;
     --tabs-container-hover-color: #313232;
+    --tab-select-border-color: transparent;
 
     /* sidebar */
     --sidebar-bg: #333333;
@@ -33,8 +37,167 @@
     --footer-hover-color: #5C89CD;
 
     /* code */
-    --code-property: #9CDCFE;
-    --code-number: #B5CEA8;
-    --code-boolean: #569CD6;
-    --code-brace: #D4D4D4;
+    --code-string: #C0937C;
+    --code-bracket: #F3D84B;
+    --code-brace: #C777D0;
+    --code-key: #B1DBFA;
+    --code-double-quote: #C0937C;
+    --code-double-quote-alt: #B1DBFA;
+}
+
+/* SynthWave '84 */
+[data-theme="SynthWave '84"] {
+    --main-bg: #262334;
+    --title-bar-bg: #221C2E;
+    --title-bar-hover-color: #33303D;
+
+    /* tabs */
+    --tab-bg: #262334;
+    --tab-hover-bg: #262334;
+    --tab-active-bg: #262334;
+    --tabs-container-bg: #221C2E;
+    --tabs-container-hover-color: #363541;
+    --tab-select-border-color: #781B83;
+
+    /* sidebar */
+    --sidebar-bg: #17151F;
+    --sidebar-content-bg: #221C2E;
+    --sidebar-hover-color: #2E243F;
+    --sidebar-active-color: #3F3949;
+
+    /* footer */
+    --footer-bg: #221C2E;
+    --footer-hover-color: #3D3847;
+
+    /* code */
+    --code-string: #E7904D;
+    --code-bracket: #F3D84B;
+    --code-brace: #C777D0;
+    --code-key: #9FEEBD;
+    --code-double-quote: #E7904D;
+    --code-double-quote-alt: #9FEEBD;
+}
+
+[data-theme="SynthWave '84"] .tab::after {
+  top: auto;
+  bottom: 0;
+}
+
+[data-theme="SynthWave '84"] .code.json span.string { text-shadow: 0px 0px 8px var(--code-string); }
+[data-theme="SynthWave '84"] .code.json span.string { text-shadow: 5px 5px 0px red; }
+[data-theme="SynthWave '84"] .code.json span.bracket { text-shadow: 5px 5px 0px red; }
+
+/* Dracula */
+[data-theme="Dracula"] {
+    --main-bg: #292A35;
+    --title-bar-bg: #22222B;
+    --title-bar-hover-color: #33343B;
+
+    /* tabs */
+    --tab-bg: #22222B;
+    --tab-hover-bg: #22222B;
+    --tab-active-bg: #292A35;
+    --tabs-container-bg: #191A20;
+    --tabs-container-hover-color: #33343B;
+    --tab-select-border-color: #88567C;
+
+    /* sidebar */
+    --sidebar-bg: #353745;
+    --sidebar-content-bg: #22222B;
+    --sidebar-hover-color: #323340;
+    --sidebar-active-color: #454758;
+
+    /* footer */
+    --footer-bg: #191A20;
+    --footer-hover-color: #35363B;
+
+    /* code */
+    --code-string: #F1F99B;
+    --code-bracket: #F8F8F3;
+    --code-brace: #E682C3;
+    --code-key: #ABE7FA;
+    --code-colon: #E682C3;
+    --code-double-quote: #F1F99B;
+    --code-double-quote-alt: #ABE7FA;
+}
+
+/* Night Owl */
+[data-theme="Night Owl"] {
+    --main-bg: #091626;
+    --title-bar-bg: #091626;
+    --title-bar-hover-color: #222C37;
+
+    /* tabs */
+    --tab-bg: #06111C;
+    --tab-hover-bg: #06111C;
+    --tab-active-bg: #182940;
+    --tabs-container-bg: #091626;
+    --tabs-container-hover-color: #202930;
+    --tab-select-border-color: transparent;
+
+    /* sidebar */
+    --sidebar-bg: #091626;
+    --sidebar-content-bg: #091626;
+    --sidebar-hover-color: #091626;
+    --sidebar-active-color: #20344D;
+
+    /* footer */
+    --footer-bg: #091626;
+    --footer-hover-color: #212430;
+
+    /* code */
+    --code-string: #BB8DD1;
+    --code-bracket: #F3D84B;
+    --code-brace: #C777D0;
+    --code-key: #9ED9CB;
+    --code-colon: #D8DEEA;
+    --code-double-quote: #D8DEEA;
+}
+
+[data-theme="Night Owl"] .file:not(:hover, .active) > p,
+[data-theme="Night Owl"] .folder-header:not(:hover, .active) > p {
+    transition: opacity 0.3s ease;
+}
+
+[data-theme="Night Owl"] .file:not(:hover, .active) > p,
+[data-theme="Night Owl"] .folder-header:not(:hover, .active) > p {
+    opacity: 0.5;
+}
+
+/* One dark Pro */
+[data-theme="One Dark Pro"] {
+    --main-bg: #292C33;
+    --title-bar-bg: #292C33;
+    --title-bar-hover-color: #383B40;
+
+    /* tabs */
+    --tab-bg: #22252A;
+    --tab-hover-bg: #343841;
+    --tab-active-bg: #292C33;
+    --tabs-container-bg: #22252A;
+    --tabs-container-hover-color: #383B40;
+    --tab-select-border-color: #B4B4B4;
+
+    /* sidebar */
+    --sidebar-bg: #292C33;
+    --sidebar-content-bg: #22252A;
+    --sidebar-hover-color: #2E3139;
+    --sidebar-active-color: #343841;
+
+    /* footer */
+    --footer-bg: #22252A;
+    --footer-hover-color: #3D4044;
+
+    /* code */
+    --code-string: #A3C182;
+    --code-bracket: #C39C6E;
+    --code-key: #C97377;
+    --code-colon: #ADB2BE;
+    --code-double-quote: #A3C182;
+    --code-double-quote-alt: #C97377;
+}
+
+[data-theme="One Dark Pro"] .tab::after {
+    top: auto;
+    bottom: 0;
 }

@@ -1,14 +1,15 @@
 .code {
   background: var(--color-bg);
   color: var(--color-text);
-  padding: 16px;
   overflow-x: auto;
   border-radius: 6px;
   counter-reset: line;
+  line-break: strict;
 }
 
 .code code {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .code code > span {
@@ -26,7 +27,18 @@
   user-select: none;
 }
 
-.code.json span.string { color: #C0937C; }
-.code.json span.bracket { color: #F3D84B; }
-.code.json span.brace { color: #C777D0 }
-.code.json span.key { color: #B1DBFA }
+#theme-select {
+  border: none;
+  background-color: var(--main-bg);
+  color: inherit;
+  cursor: pointer;
+  color: var(--code-string);
+}
+
+.code.json span.string { color: var(--code-string); }
+.code.json span.bracket { color: var(--code-bracket); }
+.code.json span.brace { color: var(--code-brace); }
+.code.json span.key { color: var(--code-key); }
+.code.json span.colon { color: var(--code-colon); }
+.code.json span.double-quote { color: var(--code-double-quote); }
+.code.json span.double-quote.alt { color: var(--code-double-quote-alt); }

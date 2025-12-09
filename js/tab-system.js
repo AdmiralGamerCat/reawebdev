@@ -1,6 +1,6 @@
 "use strict";
 
-import { createElement, fetchFiles, fetchFile } from "./helper-functions.js";
+import { createElement, fetchFile, updateThemeSelect } from "./helper-functions.js";
 import {
     getOpenTabs,
     getActiveTabId,
@@ -33,6 +33,7 @@ const createTabElement = (file) => {
             return;
         } else {
             switchTab(file.id);
+            console.log(`Switched tab to file id: ${file.id}`)
         }
     });
     
@@ -45,7 +46,7 @@ const createTabElement = (file) => {
     setTimeout(() => tabElement.classList.remove("hidden"), 10);
 };
 
-const switchTab = async (tabId) => {
+export const switchTab = async (tabId) => {
     setActiveTabId(tabId);
 
     tabsContainer.querySelectorAll(".tab").forEach(tab => {
@@ -68,6 +69,10 @@ const switchTab = async (tabId) => {
         tabContentContainer.innerHTML = fileContent || "<p>No content available.</p>";
         tabContentContainer.dataset.styleId = tabId;
 
+        // settings check
+        const themeSelect = tabContentContainer.querySelector("#theme-select");
+        if (themeSelect) updateThemeSelect(themeSelect);
+
         const iframe = tabContentContainer.querySelector("iframe.content-viewer");
 
         if (iframe) {
@@ -89,16 +94,19 @@ export const openTab = async (file, options = {}) => {
     // Add to state only if not restoring
     if (!existsInState && !restore) {
         addOpenTab({ id: file.id });
+        console.log(`Added open tab with id: ${file.id}`);
     }
 
     // Create DOM only if missing OR forced
     if (!existsInDOM || force) {
         createTabElement(file);
+        console.log(`Created tab element for file: ${file}`);
     }
 
     // Switch tab only on user actions or if forced (like active tab)
     if (!restore || force) {
         await switchTab(file.id);
+        console.log(`Switched tab to file id: ${file.id}`);
     }
 };
 

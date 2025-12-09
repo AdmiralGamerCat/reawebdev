@@ -26,7 +26,7 @@ const createFolderElement = (folder) => {
         { class: "folder-header", "data-folder-id": folder.id },
         [
             createElement("img", { class: "icon", src: `./content/icons/${folder.icon}` }),
-            folder.title
+            createElement("p", { html: folder.title })
         ]
     );
 
@@ -101,7 +101,7 @@ const createFileElement = (file) => {
         { class: "file", "data-file-id": file.id },
         [
             createElement("img", { class: "icon", src: `./content/icons/${file.icon}` }),
-            file.title
+            createElement("p", { html: file.title })
         ]
     );
 

@@ -1,5 +1,7 @@
 "use strict";
 
+import { getTheme, setTheme } from "./state-manager.js";
+
 // helper functions
 export const createElement = (tag, attributes = {}, children = []) => {
     const element = document.createElement(tag);
@@ -51,3 +53,13 @@ export const fetchFile = async (fileId) => {
 export const isMobile = () => {
     return window.matchMedia("(max-width: 960px)").matches;
 }
+
+// theme
+export const updateThemeSelect = (themeSelect) => {
+    themeSelect.value = getTheme();
+
+    themeSelect.addEventListener("click", () => {
+        setTheme(themeSelect.value);
+        document.documentElement.dataset.theme = themeSelect.value;
+    });
+};
