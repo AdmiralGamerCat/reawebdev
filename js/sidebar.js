@@ -25,7 +25,7 @@ const createFolderElement = (folder) => {
         "header",
         { class: "folder-header", "data-folder-id": folder.id },
         [
-            createElement("img", { class: "icon", src: `./content/icons/${folder.icon}` }),
+            createElement("img", { class: "icon", src: `./content/icons/${folder.icon}`, alt: "folder icon" }),
             createElement("p", { html: folder.title })
         ]
     );
@@ -100,18 +100,18 @@ const createFileElement = (file) => {
         "div",
         { class: "file", "data-file-id": file.id },
         [
-            createElement("img", { class: "icon", src: `./content/icons/${file.icon}` }),
+            createElement("img", { class: "icon", src: `./content/icons/${file.icon}`, alt: "file icon" }),
             createElement("p", { html: file.title })
         ]
     );
 
     fileElement.addEventListener("click", () => {
+        if (isMobile()) explorerToggle.checked = true;
+
         if (getActiveTabId() === file.id) {
             return;
         } else {
             openTab(file);
-
-            if (isMobile()) explorerToggle.checked = true;
         };
     });
 

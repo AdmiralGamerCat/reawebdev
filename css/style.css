@@ -254,6 +254,11 @@ html, body {
   height: 100%;
   overflow: auto;
   min-height: 0;
+  padding: var(--padding-big);
+}
+
+#tab-content-container:has(iframe.content-viewer) {
+  padding: 0;
 }
 
 #tab-content-container::-webkit-scrollbar {
@@ -288,10 +293,6 @@ html, body {
 
 #tab-content-container.switching::after {
   opacity: 1;
-}
-
-#tab-content-container:has(:not(iframe.content-viewer)) {
-  padding: var(--padding-big);
 }
 
 #tab-content-container:empty {
@@ -398,7 +399,6 @@ footer {
   flex-shrink: 0;
   height: 23.3px;
   justify-content: space-between;
-  /* z-index: 50; */
 }
 
 footer button:hover {
@@ -433,8 +433,15 @@ button.close:hover,
   justify-content: center;
   flex-shrink: 0;
   opacity: 0.9;
-  margin-right: 1em;
   user-select: none;
+}
+
+#sidebar-content .icon {
+  margin-right: 1em;
+}
+
+#tab-content-container .icon {
+  font-size: 1.5em;
 }
 
 button .icon {
@@ -489,29 +496,45 @@ h3 {
 }
 
 a {
-  color: #74A9F5;
+  color: var(--link-text-color);
+  position: relative;
+  text-decoration: none;
 }
 
-a:not(:hover) {
-  text-decoration: none;
+a::before {
+  content: "";
+  width: 0%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--link-text-color);
+  transition: width 0.3s ease;
+}
+
+a:hover::before {
+  width: 100%;
 }
 
 a[href^="http"],
 a[data-file-link] {
-  position: relative;
-  margin-right: 1.25em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2em;
 }
 
 a[href^="http"]::after,
 a[data-file-link]::after {
-  width: auto;
-  height: 100%;
-  aspect-ratio: 1/1;
-  position: absolute;
-  top: 0%;
-  right: -1.25em;
+  content: "";
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  aspect-ratio: 1 / 1;
+  background-size: contain;
+  background-repeat: no-repeat;
   transition: transform 0.3s ease;
 }
+
 
 a[href^="http"]::after {
   content: url(./../content/icons/external-link.svg);

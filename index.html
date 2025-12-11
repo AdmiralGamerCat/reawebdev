@@ -16,7 +16,7 @@
     </head>
     <body>
         <div id="container">
-            <div class="title-bar">
+            <header class="title-bar">
                 <div class="wrapper padding left">
                     <img src="./content/icons/vscode.svg" alt="vscode icon" class="icon">
                     <button>File</button>
@@ -34,7 +34,7 @@
                     <button title="Restore"><img src="./content/icons/shrink-window.svg" alt="shrink-window icon" class="icon"></button>
                     <button title="Close" class="close"><img src="./content/icons/close.svg" alt="close icon" class="icon"></button>
                 </div>
-            </div>
+            </header>
             <div id="view">
                 <div id="sidebar">
                     <input type="checkbox" name="explorer-toggle" id="explorer-toggle" title="Explorer" class="explorer-button button">
@@ -47,13 +47,11 @@
                         </button>
                     </div>
                 </div>
-                <div id="sidebar-content">
-                </div>
-                <div id="content-container">
-                    <div id="tabs-container">
-                    </div>
+                <nav id="sidebar-content"></nav>
+                <main id="content-container">
+                    <div id="tabs-container"></div>
                     <div id="tab-content-container"></div>
-                </div>
+                </main>
             </div>
             <footer>
                 <div class="wrapper gap">

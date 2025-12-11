@@ -17,6 +17,10 @@
   counter-increment: line;
 }
 
+.code > code span:has(#theme-select)::before {
+  margin-right: var(--padding-big);
+}
+
 .code code > span::before {
   content: counter(line);
   display: inline-block;

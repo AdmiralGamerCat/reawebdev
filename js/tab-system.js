@@ -1,6 +1,7 @@
 "use strict";
 
-import { createElement, fetchFile, updateThemeSelect } from "./helper-functions.js";
+import { createElement, fetchFile, updateThemeSelect, isMobile } from "./helper-functions.js";
+import { expandFilePath } from "./sidebar.js";
 import {
     getOpenTabs,
     getActiveTabId,
@@ -12,28 +13,31 @@ import {
 const tabsContainer = document.querySelector("#tabs-container");
 const tabContentContainer = document.querySelector("#tab-content-container");
 const sidebarContent = document.querySelector("#sidebar-content");
+const explorerToggle = document.querySelector("#explorer-toggle");
 
 const createTabElement = (file) => {
     const tabElement = createElement(
         "button",
         { class: "tab hidden", "data-tab-id": file.id },
         [
-            createElement("img", { class: "icon", src: `./content/icons/${file.icon}` }),
+            createElement("img", { class: "icon", src: `./content/icons/${file.icon}`, alt: "tab icon" }),
             file.title,
             createElement(
                 "button",
                 { class: "close-button" },
-                [ createElement("img", { class: "icon", src: "./content/icons/close.svg" }) ]
+                [ createElement("img", { class: "icon", src: "./content/icons/close.svg", alt: "close icon" }) ]
             )
         ]
     );
 
     tabElement.addEventListener("click", () => {
+        if (isMobile()) explorerToggle.checked = true;
+        
         if (getActiveTabId() === file.id) {
             return;
         } else {
+            expandFilePath(file.id);
             switchTab(file.id);
-            console.log(`Switched tab to file id: ${file.id}`)
         }
     });
     
@@ -94,19 +98,16 @@ export const openTab = async (file, options = {}) => {
     // Add to state only if not restoring
     if (!existsInState && !restore) {
         addOpenTab({ id: file.id });
-        console.log(`Added open tab with id: ${file.id}`);
     }
 
     // Create DOM only if missing OR forced
     if (!existsInDOM || force) {
         createTabElement(file);
-        console.log(`Created tab element for file: ${file}`);
     }
 
     // Switch tab only on user actions or if forced (like active tab)
     if (!restore || force) {
         await switchTab(file.id);
-        console.log(`Switched tab to file id: ${file.id}`);
     }
 };
 

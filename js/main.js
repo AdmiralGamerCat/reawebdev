@@ -2,14 +2,15 @@
 
 import { renderSidebarContent, expandFilePath } from "./sidebar.js";
 import { getOpenTabs, getActiveTabId, getTheme, setTheme } from "./state-manager.js";
-import { fetchFile } from "./helper-functions.js";
+import { fetchFile, isMobile } from "./helper-functions.js";
 import { openTab, switchTab } from "./tab-system.js";
+
+const explorerToggle = document.querySelector("#explorer-toggle");
 
 const restoreTabs = async () => {
     const openTabs = getOpenTabs();
     const activeTabId = getActiveTabId();
 
-    // Restore all tabs in saved order
     for (const { id } of openTabs) {
         const file = await fetchFile(id);
         if (file) {
@@ -17,27 +18,21 @@ const restoreTabs = async () => {
         }
     }
 
-    // ---- DELAY NECESSARY ----
-    // Give DOM time to render tabs before switching
     await new Promise(r => setTimeout(r, 50));
 
-    // If no active tab stored
     if (!activeTabId) return;
 
-    // If active tab no longer exists, fail gracefully
     const exists = document.querySelector(`[data-tab-id="${activeTabId}"]`);
     if (!exists) {
-        // Default: last tab in list
         const last = openTabs[openTabs.length - 1];
         if (last) switchTab(last.id);
         return;
     }
 
-    // FINAL ACTION: switch to correct tab
     switchTab(activeTabId);
 };
 
-// SET WEBSITE STATE
+// set website state
 document.addEventListener("DOMContentLoaded", async () => {
     renderSidebarContent();
     restoreTabs();
@@ -61,8 +56,10 @@ document.addEventListener("click", async (event) => {
 
     await openTab(file);
     expandFilePath(fileId);
+    if (isMobile()) explorerToggle.checked = true;
 });
 
+// external website link
 document.addEventListener("click", (event) => {
     const link = event.target.closest("a[href^='http']");
 

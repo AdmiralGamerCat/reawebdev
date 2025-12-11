@@ -9,11 +9,6 @@
     width: fit-content;
 }
 
-[data-style-id="welcome"] .column-left,
-[data-style-id="welcome"] .column-right {
-    width: 50%;
-}
-
 [data-style-id="welcome"] .column-left {
     gap: 2em;
 }
