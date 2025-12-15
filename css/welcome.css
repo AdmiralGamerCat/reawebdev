@@ -7,14 +7,15 @@
 
 [data-style-id="welcome"] .welcome-wrapper {
     width: fit-content;
+    justify-content: space-around;
 }
 
 [data-style-id="welcome"] .column-left {
-    gap: 2em;
+    gap: var(--padding-big);
 }
 
 [data-style-id="welcome"] .column-right {
-    align-items: end;
+    width: fit-content;
 }
 
 @media (max-width: 960px) {

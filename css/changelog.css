@@ -1,0 +1,9 @@
+[data-style-id="changelog"] ul {
+    padding-left: 1em;
+}
+
+[data-style-id="changelog"] li > ul {
+    padding: 0.25em 0 0.25em 1em;
+    /* padding-top: 0.25em; */
+    /* padding-left: 1em; */
+}

@@ -581,7 +581,7 @@ const createUser = async () => {
                     case "Admin":
                         newInputs = [
                             { label: "Username", type: "text", id: "username-input", name: "username-input" },
-                            { label: "Authentication level", type: "number", id: "authentication-level-input", name: "authentication-level-input", min: 0, max: 4 }
+                            { label: "Authentication level", type: "text", id: "authentication-level-input", name: "authentication-level-input", min: 0, max: 4 }
                         ]
                         break;
 

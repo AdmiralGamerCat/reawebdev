@@ -149,6 +149,7 @@ html, body {
   filter: brightness(0.5);
 }
 
+/* sidebar content */
 #sidebar-content {
   width: 200px;
   flex-shrink: 0;
@@ -172,6 +173,7 @@ html, body {
   min-height: 0;
 }
 
+/* tabs container & tab */
 #tabs-container {
   display: flex;
   width: 100%;
@@ -183,6 +185,11 @@ html, body {
   overscroll-behavior-x: contain;
   background-color: var(--tabs-container-bg);
   min-width: 0;
+  transition: height 0.3s ease;
+}
+
+#tabs-container:empty {
+  height: 0px;
 }
 
 #tabs-container::-webkit-scrollbar {
@@ -247,7 +254,7 @@ html, body {
   pointer-events: none;
 }
 
-/* tab content */
+/* tab content container */
 #tab-content-container {
   position: relative;
   width: 100%;
@@ -305,6 +312,7 @@ html, body {
 .folder-header {
   display: flex;
   align-items: center;
+  gap: var(--padding);
   padding: var(--padding);
   padding-left: calc(2 * var(--padding));
   cursor: pointer;
@@ -315,10 +323,6 @@ html, body {
 .file.active,
 .folder-header.active {
   background-color: var(--sidebar-active-color);
-}
-
-.folder {
-  position: relative;
 }
 
 .folder-header {
@@ -358,6 +362,7 @@ html, body {
   max-height: 1000px;
 }
 
+/* base vertical line */
 .folder-children-container::before {
   content: "";
   width: 1px;
@@ -371,24 +376,17 @@ html, body {
   transition: height 0.3s ease, filter 0.3s ease;
 }
 
-/* 1. Direct hover: only this folder's line */
-.folder:hover > .folder-children-container::before {
-  filter: brightness(0.75);
-}
-
-/* 2. Any ancestor folder whose subtree is hovered */
-.folder:has(:hover) > .folder-children-container::before {
-  filter: brightness(0.75);
-}
-
-/* 3. Active file OR active folder highlights the whole path */
-.folder:has(.active) > .folder-children-container::before {
-  filter: brightness(0.75);
-}
-
 .folder-children-container.open::before {
   height: 100%;
 }
+
+/* highlight line when folder is hovered anywhere or has an active file */
+.folder-wrapper:hover > .folder-header + .folder-children-container::before,
+.folder-wrapper.active > .folder-header + .folder-children-container::before,
+.folder-wrapper .folder-children-container:has(.file.active)::before {
+  filter: brightness(0.75);
+}
+
 
 /* footer */
 footer {
@@ -434,10 +432,6 @@ button.close:hover,
   flex-shrink: 0;
   opacity: 0.9;
   user-select: none;
-}
-
-#sidebar-content .icon {
-  margin-right: 1em;
 }
 
 #tab-content-container .icon {
@@ -545,13 +539,53 @@ a[data-file-link]::after {
 }
 
 a[href^="http"]:hover::after {
-  text-decoration: underline;
-}
-
-a[href^="http"]:hover::after {
-  transform: translate(5%, -5%) scale(1.1);
+  transform: translate(5%, -6%) scale(1.1);
 }
 
 a[data-file-link]:hover::after {
-  transform: rotate(10deg) scale(1.1);
+  transform: rotate(10deg) scale(1.1) translateY(-5%);
+}
+
+/* animated folder */
+.folder {
+  perspective: 100px;
+  width: 1.25em;
+  height: 1.25em;
+  position: relative;
+  display: block;
+}
+
+.folder > .folder-part {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center bottom;
+  background-size: cover;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* folder base */
+.folder > .folder-base {
+  background-image: url(./../content/icons/folder-base.svg);
+}
+
+.folder-header[data-open="true"] .folder > .folder-base {
+  transform: rotateY(30deg);
+}
+
+/* folder lid */
+.folder > .folder-lid-outline {
+  background-image: url(./../content/icons/folder-lid-outline.svg);
+}
+.folder > .folder-lid-fill {
+  background-color: var(--sidebar-content-bg);
+  mask: url(./../content/icons/folder-lid-fill.svg) center/contain no-repeat;
+  -webkit-mask: url(./../content/icons/folder-lid-fill.svg) center/contain no-repeat;
+}
+
+.folder-header[data-open="true"] .folder > .folder-lid-outline,
+.folder-header[data-open="true"] .folder > .folder-lid-fill {
+  transform: rotateY(30deg) rotateX(-30deg);
 }

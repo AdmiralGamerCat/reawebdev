@@ -9,7 +9,7 @@ const explorerToggle = document.querySelector("#explorer-toggle");
 
 export const renderSidebarContent = async () => {
     const files = await fetchFiles();
-    sidebarContent.innerHTML = "";
+    // sidebarContent.innerHTML = "";
 
     files.forEach(file => sidebarContent.appendChild(createSidebarItem(file)));
 };
@@ -20,19 +20,30 @@ const createSidebarItem = (item) => {
 };
 
 const createFolderElement = (folder) => {
-    const folderElement = createElement("div", { class: "folder" });
+    const folderElement = createElement("div", { class: "folder-wrapper" });
+
+    // Create animated folder icon
+    const animatedFolder = createElement("span", { class: "folder" }, [
+        createElement("span", { class: "folder-base folder-part" }),
+        createElement("span", { class: "folder-lid-outline folder-part" }),
+        createElement("span", { class: "folder-lid-fill folder-part" }),
+    ]);
+
+    // Create header (title + icon)
     const header = createElement(
         "header",
         { class: "folder-header", "data-folder-id": folder.id },
         [
-            createElement("img", { class: "icon", src: `./content/icons/${folder.icon}`, alt: "folder icon" }),
+            animatedFolder,
             createElement("p", { html: folder.title })
         ]
     );
 
+    // Children container
     const childrenContainer = createElement("div", { class: "folder-children-container" });
     folder.children.forEach(child => childrenContainer.appendChild(createSidebarItem(child)));
 
+    // Restore previous open state
     const isOpen = getFolderState(folder.id);
     if (isOpen) {
         childrenContainer.classList.add("open");
@@ -44,6 +55,7 @@ const createFolderElement = (folder) => {
         });
     }
 
+    // Header click logic
     header.addEventListener("click", () => {
         explorerToggle.checked = false;
         const isCurrentlyOpen = childrenContainer.classList.contains("open");
@@ -94,6 +106,7 @@ const createFolderElement = (folder) => {
 
     return folderElement;
 };
+
 
 const createFileElement = (file) => {
     const fileElement = createElement(

@@ -36,6 +36,8 @@ const restoreTabs = async () => {
 document.addEventListener("DOMContentLoaded", async () => {
     renderSidebarContent();
     restoreTabs();
+
+    if (isMobile()) explorerToggle.checked = true
     
     if (!getTheme()) setTheme("Dark+");
     document.documentElement.dataset.theme = getTheme();

@@ -10,7 +10,6 @@
         "type": "folder",
         "id": "about-me-folder",
         "title": "About Me",
-        "icon": "folder.svg",
         "children": [
             {
                 "type": "file",
@@ -39,7 +38,6 @@
         "type": "folder",
         "id": "projects-folder",
         "title": "Projects",
-        "icon": "folder.svg",
         "children": [
             {
                 "type": "file",
@@ -52,7 +50,6 @@
                 "type": "folder",
                 "id": "project-uomo",
                 "title": "Uomo Webshop",
-                "icon": "folder.svg",
                 "children": [
                     {
                         "type": "file",
@@ -64,7 +61,7 @@
                     {
                         "type": "file",
                         "id": "project-uomo-preview",
-                        "title": "Uomo.html",
+                        "title": "uomo.html",
                         "icon": "html-file.svg",
                         "content": "project-uomo.html"
                     }
@@ -74,7 +71,6 @@
                 "type": "folder",
                 "id": "project-users-cms",
                 "title": "Users CMS",
-                "icon": "folder.svg",
                 "children": [
                     {
                         "type": "file",
@@ -86,7 +82,7 @@
                     {
                         "type": "file",
                         "id": "project-users-cms-preview",
-                        "title": "Preview.html",
+                        "title": "users-cms.html",
                         "icon": "html-file.svg",
                         "content": "project-users-cms.html"
                     }
@@ -100,5 +96,12 @@
         "title": "settings.json",
         "icon": "json-file.svg",
         "content": "settings.html"
+    },
+    {
+        "type": "file",
+        "id": "changelog",
+        "title": "changelog.md",
+        "icon": "clock.svg",
+        "content": "changelog.html"
     }
 ]

@@ -32,11 +32,11 @@ const createTabElement = (file) => {
 
     tabElement.addEventListener("click", () => {
         if (isMobile()) explorerToggle.checked = true;
+        expandFilePath(file.id);
         
         if (getActiveTabId() === file.id) {
             return;
         } else {
-            expandFilePath(file.id);
             switchTab(file.id);
         }
     });
@@ -73,19 +73,20 @@ export const switchTab = async (tabId) => {
         tabContentContainer.innerHTML = fileContent || "<p>No content available.</p>";
         tabContentContainer.dataset.styleId = tabId;
 
-        // settings check
+        // theme select check
         const themeSelect = tabContentContainer.querySelector("#theme-select");
         if (themeSelect) updateThemeSelect(themeSelect);
 
+        // iframe check
         const iframe = tabContentContainer.querySelector("iframe.content-viewer");
 
         if (iframe) {
             iframe.addEventListener("load", () => {
                 tabContentContainer.classList.remove("switching");
-            })
+            });
         } else {
             tabContentContainer.classList.remove("switching");
-        }
+        };
     }, 150);
 };
 

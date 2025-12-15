@@ -83,6 +83,16 @@
   bottom: 0;
 }
 
+[data-theme="SynthWave '84"] .file:not(:hover, .active) > p,
+[data-theme="SynthWave '84"] .folder-header:not(:hover, .active) > p {
+    transition: opacity 0.3s ease;
+}
+
+[data-theme="SynthWave '84"] .file:not(:hover, .active) > p,
+[data-theme="SynthWave '84"] .folder-header:not(:hover, .active) > p {
+    opacity: 0.5;
+}
+
 [data-theme="SynthWave '84"] .code.json span.string { text-shadow: 0px 0px 8px var(--code-string); }
 [data-theme="SynthWave '84"] .code.json span.string { text-shadow: 5px 5px 0px red; }
 [data-theme="SynthWave '84"] .code.json span.bracket { text-shadow: 5px 5px 0px red; }
