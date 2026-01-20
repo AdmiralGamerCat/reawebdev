@@ -35,8 +35,8 @@ export const fetchFile = async (fileId) => {
             if (item.type === "folder" && item.children) {
                 const foundFile = search(item.children);
                 if (foundFile) return foundFile;
-            }
-        }
+            };
+        };
         return null;
     };
 

@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --banner-image: url(./../assets/placeholder-banner.png);
+    --poster-image: url(./../assets/placeholder-poster.png);
+    --gradient-color: 31.5, 10.5, 52.5;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: whitesmoke;
+}
+
+/* nav */
+nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+nav h1 {
+    font-family: "Fascinate", system-ui;
+    background: -webkit-linear-gradient(crimson, maroon);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+}
+
+/* page container */
+#page-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+}
+
+/* re-usable things */
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+/* button */
+button {
+    position: relative;
+    padding: 0.5em;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    color: whitesmoke;
+    z-index: 1;
+    display: block;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border 0.3s ease, color 0.3s ease;
+}
+
+button:hover:not(:disabled),
+button.active {
+    border: 2px solid whitesmoke;
+}
+
+button.active,
+button:disabled {
+    cursor: not-allowed;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(180deg, crimson, maroon);
+    transition: top 0.3s ease;
+}
+
+button:hover:not(:disabled)::before,
+button.active::before {
+    top: 0%;
+}
+
+/* select */
+.select-wrapper {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.select-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, crimson, maroon);
+    transition: top 0.3s ease;
+    z-index: 0;
+}
+
+.select-wrapper:hover::before,
+.select-wrapper:focus-within::before {
+    top: 0;
+}
+
+.select-wrapper select {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    transition: border 0.3s ease;
+}
+
+.select-wrapper:hover select,
+.select-wrapper:focus-within select {
+    border: 2px solid whitesmoke;
+}
+
+
+select option {
+    background-color: black;
+}
+
+.margin-bottom {
+    margin-bottom: 1em;
+}
+
+.margin-bottom.small {
+    margin-bottom: 0.5em;
+}
+
+.margin-right.negative {
+    margin-right: -0.25em;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.icon {
+    aspect-ratio: 1 / 1;
+    width: 1em;
+}
+
+/* heading */
+.heading {
+    display: flex;
+    align-items: center;
+}
+
+.heading .wrapper {
+    flex-direction: column;
+    align-items: start;
+    gap: 0;
+}
+
+.heading-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.3) 50%, transparent);
+  margin-left: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+/* movie banner */
+.movie-banner {
+    position: relative;
+    width: 100%;
+    background-image: var(--banner-image);
+    background-position: center top;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    min-height: 55vh;
+    max-height: 70vh;
+    border-radius: 3em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgb(var(--gradient-color));
+    transition:
+        background-size 0.6s ease,
+        background-position 0.6s ease,
+        outline 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease,
+        filter 0.3s ease
+}
+
+.movie-banner.hidden {
+    transform: scale(0.5);
+    filter: blur(50px);
+    user-select: none;
+}
+
+.movie-banner:hover {
+    background-size: 105%;
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
+
+
+.movie-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgba(31.5, 10.5, 52.5, 1) calc((50vw - 170px) - 340px), rgba(31.5, 10.5, 52.5, 0.84) 50%, rgba(31.5, 10.5, 52.5, 0.84) 100%);
+}
+
+.banner-inner {
+    z-index: 2;
+    display: flex;
+    gap: 3rem;
+    padding: 2rem;
+    max-width: 1400px;
+    color: whitesmoke;
+}
+
+/* movie poster */
+.movie-poster {
+    background-image: var(--poster-image);
+    background-size: cover;
+    aspect-ratio: 2/3;
+    height: 420px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-banner:hover .movie-poster,
+.movie-poster:hover {
+    transform: translateY(0) scale(1.025);
+}
+
+/* rating */
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+/* star wrapper */
+.stars {
+    position: relative;
+    display: inline-block;
+}
+
+.star {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.stars-background,
+.stars-fill {
+    display: flex;
+}
+
+/* filled stars (clipped) */
+.stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 0%;
+    z-index: 2;
+}
+
+/* outline stars (always visible, on top) */
+.stars-background {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* movie meta */
+.movie-meta,
+.genres-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.genre {
+  padding: 0.25em;
+  background: linear-gradient(180deg, crimson, maroon);
+  border-radius: 4px;
+  border-top: 1px solid white;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+.genre:hover {
+    transform: scale(1.125);
+}
+
+.description {
+    max-width: 75%;
+}
+
+/* actors */
+.actors-grid,
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5em;
+}
+
+.actor,
+.movie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.actor.hidden,
+.movie.hidden {
+    opacity: 0;
+    user-select: none;
+    transform: scale(0.5) translateY(1rem);
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1a1a;
+    outline: 1px solid rgba(255, 255, 255, 0.2);
+    transition: outline 0.3s ease, box-shadow 0.3s ease;
+}
+
+.actor:hover .image-wrapper,
+.movie:hover .image-wrapper {
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.actor:hover .actor-image {
+    transform: scale(1.05);
+}
+
+/* pagination */
+.pagination-wrapper {
+    align-self: center;
+    display: flex;
+    gap: 0.5em;
+}
+
+/* mobile TESTING */
+@media (max-width: 768px) {
+  .movie-banner {
+    min-height: auto;
+    max-height: none;
+    padding: 1.5rem 1rem;
+    border-radius: 1.5em;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-inner {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-poster {
+    height: 260px;
+    width: auto;
+    margin: 0 auto;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .movie-banner::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--gradient-color), 0.95),
+      rgba(var(--gradient-color), 0.85)
+    );
+  }
+}

@@ -48,6 +48,27 @@
             },
             {
                 "type": "folder",
+                "id": "movie-viewer",
+                "title": "MovieViewer",
+                "children": [
+                    {
+                        "type": "file",
+                        "id": "project-movie-viewer-readme",
+                        "title": "README.md",
+                        "icon": "markdown.svg",
+                        "content": "project-movie-viewer-readme.html"
+                    },
+                    {
+                        "type": "file",
+                        "id": "project-movie-viewer-preview",
+                        "title": "MovieViewer.html",
+                        "icon": "html-file.svg",
+                        "content": "project-movie-viewer.html"
+                    }
+                ]
+            },
+            {
+                "type": "folder",
                 "id": "project-uomo",
                 "title": "Uomo Webshop",
                 "children": [

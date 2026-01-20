@@ -1,0 +1,32 @@
+<div class="wrapper column gap half-width">
+    <h1>MovieViewer</h1>
+
+    <p>
+        MovieViewer is a 
+        <a href="https://developer.mozilla.org/en-US/docs/Glossary/SPA">single-page application</a> 
+        built with modern vanilla JavaScript that consumes 
+        <a href="https://www.themoviedb.org">The Movie Database</a> (TMDB) API to browse top-rated movies and view detailed film information.
+        <br><br>
+
+        The application uses a centralized state system stored in <code>localStorage</code> to manage navigation, pagination, selected language, and active movie selection. This enables seamless page transitions without page reloads while keeping the UI fully synchronized with application state.
+        <br><br>
+
+        API responses are cached in memory per language and page to minimize redundant network requests and significantly improve performance during navigation and language switching.
+        <br><br>
+
+        The app features dynamic pagination with previous/next controls and adaptive page ranges, including proper handling of API-imposed limits. A custom internationalization layer updates both UI text and API responses in real time when the language is changed.
+        <br><br>
+
+        The project is structured using ES modules, reusable DOM utilities, and a clear separation between rendering logic, state management, and data fetching.
+    </p><br>
+
+    <h2>Fun fact</h2>
+    <p>
+        The fetch-response caching was added after a bug caused 50+ API requests on every render, resulting in massive performance issues. Fixing this led to a much faster and more scalable application. (oops)
+    </p>
+
+    <div class="wrapper">
+        <img src="./content/icons/arrow.svg" alt="" class="icon">
+        <a href="#" data-file-link="project-movie-viewer-preview">View project demo</a>
+    </div>
+</div>
